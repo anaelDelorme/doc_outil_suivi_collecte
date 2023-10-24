@@ -1,9 +1,7 @@
-# Preface {.unnumbered}
+# Préface {.unnumbered}
 
-This is a Quarto book.
+Le livre présente une méthode pour créer un site de suivi d'une collecte effectuée avec Capibara. Le suite de suivi de collecte sera accessible via un login et un mot de passe aux acteurs de la collecte, au SSP et en SRISE/SISE.
 
-To learn more about Quarto books visit <https://quarto.org/docs/books>.
+Exemple de site de suivi :
 
-```{r}
-1 + 1
-```
+![](images/accueil_exf.png)
