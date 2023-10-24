@@ -1,0 +1,78 @@
+# Développement application shiny
+
+L'application de suivi de collecte est une application shiny que nous allons déployer dans le datalab. 
+
+Pour cela nous préconisons quelques principes :   
+
+- utiliser le package [Golem](https://github.com/ThinkR-open/golem) développé par Thinkr. Il encapsule l'application shiny dans un objectif de mise en production.   
+- utiliser le datalab pour développer l'application.   
+- stocker les programmes dans GitHub.
+
+Cette partie de la documentation explique la mise en place de tout ce qu'il faut pour développer l'application. Dans les prochaines parties nous développerons le squelette du site de suivi, puis nous le peuplerons avec des box.
+
+## Création d'un repo Github
+Ce repo est le lieu de stockage des programmes du site de suivi de collecte. La création de repo est réalisé par l'un des membres de l'équipe avec son compte github (voir [Prérequis](prerequis.qmd)) :   
+
+- Se connecter à [Github](https://github.com/)
+- Créer un nouveau repository 
+
+![](images/github_new_repository.png)   
+
+- saisir le nom du repo
+
+![](images/github_name_repository.png)
+
+- laisser tout le reste tel que proposé et cliquer sur **Create repository**
+
+Vous arrivez sur la page d'accueil du repo. Vous pouvez ici ajouter vos collègues dans la rubrique **Add collaborators to this repository**. 
+
+Avant de passer à la création du service Rstudio dans le datalab, copier l'adresse du repo qui est disponible dans le Quick setup : dans l'exemple ce sera *https://github.com/anaelDelorme/suivi_collecte_esea.git*
+![](images/github_copy_link.png)
+
+## Création d'un service Rstudio dans le datalab
+
+Vous pourriez tout à fait travailler sur Cerise ou sur votre poste local. Nous vous proposons de travailler sur le datalab directement : vous avez accès à une configuration proche de celle du déploiement de votre site. 
+
+Après vous être connecté au datalab, vous aller dans *Mes services*.
+
+![](images/datalab_mes_services.png)
+
+Puis vous cliquer sur *Nouveau service* :
+
+![](images/datalab_nouveau_service.png)
+
+Vous allez le choix entre un Rstudio ou un Vscode-r-python-julia. Là nous utiliserons Rstudio en cliquant sur Lancer : 
+
+![](images/datalab_Rstudio_service.png)
+
+Avant de lancer le service nous conseillons de le configurer en ouvrant la boite *Configuration Rstudio*, puis d'aller dans l'onglet *Git*. Il faut recopier dans Repository le lien du repo copier précédemment :
+
+![](images/datalab_Rstudio_service_repo.png)
+
+Puis clikquer sur *Lancer*.
+Après quelques instants le service Rstudio sera disponible et vous pourrez vous y connectant avec l'identifiant onyxia et le mot de passe indiqué à l'écran.
+
+Si tout s'est bien passé, vous arrivez dans un Rstudio classique avec dans les Files un répertoire vide correspondant au répertoire du Github.
+
+## Installation des packages utiles
+
+La création d'un site de suivi de collecte nécessite l'installation de packages. Voici la commande à lancer :
+
+```{r}
+#| label: install_packages
+#| eval: false
+
+install.packages(c("tidyverse", "arrow", "shiny", "shinyWidgets", "bs4Dash", "shinymanager", "leaflet", "config", "DT", "echarts4r", "geojsonio", "glue", "golem", "htmlwidgets", "janitor", "sf", "testthat", "geojsonio"))
+
+```
+
+## Création du projet Golem
+
+Allez dans le répertoire créé dans votre Rstudio, puis lancer la commande : 
+
+```{r}
+#| label: create_golem
+#| eval: false
+golem::create_golem(path = "suiviCollecteESEA", check_name = TRUE, open = TRUE)
+```
+

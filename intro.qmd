@@ -1,9 +1,11 @@
 # Introduction
 
-This is a book created from markdown and executable code.
+Les sites de suivi de collecte sont des applications internet qui s'appuient sur les fichiers d'export de capibara pour fournir des services utiles aux acteurs de la collecte : suivi d'avancement, statistiques de collecte, export de listes...   
 
-See @knuth84 for additional discussion of literate programming.
+Le principe général d'architecture est assez simple :   
 
-```{r}
-1 + 1
-```
+- le cœur du dispositif est une application shiny, avec des packages additionnels pour la rendre plus efficace (bs4dash, shinywidgets, shinymanager...),    
+- cette application s'appuie sur les données exportées périodiquement par l'équipe SSP en charge de la collece,       
+- l'application est packagée pour être déployée sur les serveurs du [datalab SSP Cloud](https://datalab.sspcloud.fr/).     
+
+En suivant les étapes décrites dans cette documentation, toute équipe de collecte est capable de déployer un site de suivi.  

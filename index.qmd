@@ -1,7 +1,14 @@
 # Préface {.unnumbered}
 
-Le livre présente une méthode pour créer un site de suivi d'une collecte effectuée avec Capibara. Le suite de suivi de collecte sera accessible via un login et un mot de passe aux acteurs de la collecte, au SSP et en SRISE/SISE.
+Le livre présente une méthode pour créer un site de suivi d'une collecte effectuée avec Capibara \index{Capibara}. Le suite de suivi de collecte sera accessible via un login et un mot de passe aux acteurs de la collecte, au SSP et en SRISE/SISE.
 
 Exemple de site de suivi :
 
 ![](images/accueil_exf.png)
+
+
+::: {.callout-warning}
+## Garantie de service
+
+La solution de suivi de collecte est basée sur un hébergement dans le Datalab SSP Cloud. Veuillez noter qu'il n'y a aucune garantie de service associée à cette solution. Son utilisation est basée sur la disponibilité et les ressources actuelles, et il se peut que le service ne soit pas toujours accessible.
+:::
