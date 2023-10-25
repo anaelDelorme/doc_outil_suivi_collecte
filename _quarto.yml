@@ -18,6 +18,7 @@ book:
     - dev_app_shiny.qmd
     - squellete_appli.qmd
     - add_box.qmd
+    - add_shinymanager.qmd
     - docker.qmd
     - deploy.qmd
     - debug.qmd

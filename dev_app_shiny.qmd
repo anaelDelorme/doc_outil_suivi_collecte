@@ -4,7 +4,7 @@ L'application de suivi de collecte est une application shiny que nous allons dé
 
 Pour cela nous préconisons quelques principes :   
 
-- utiliser le package [Golem](https://github.com/ThinkR-open/golem) développé par Thinkr. Il encapsule l'application shiny dans un objectif de mise en production.   
+- utiliser le package [Golem](https://github.com/ThinkR-open/golem) développé par Thinkr. Il encapsule l'application shiny dans un package avec un objectif de mise en production (inclusion de tout ce qui est utile au déploiement).   
 - utiliser le datalab pour développer l'application.   
 - stocker les programmes dans GitHub.
 
@@ -31,7 +31,7 @@ Avant de passer à la création du service Rstudio dans le datalab, copier l'adr
 
 ## Création d'un service Rstudio dans le datalab
 
-Vous pourriez tout à fait travailler sur Cerise ou sur votre poste local. Nous vous proposons de travailler sur le datalab directement : vous avez accès à une configuration proche de celle du déploiement de votre site. 
+Vous pourriez tout à fait travailler sur Cerise ou sur votre poste local. Nous vous proposons de travailler sur le datalab directement : vous avez accès à une configuration proche de celle du déploiement de votre site. Et nous vous conseillons d'utiliser un VSCode plutôt qu'un Rstudio.
 
 Après vous être connecté au datalab, vous aller dans *Mes services*.
 
@@ -41,38 +41,155 @@ Puis vous cliquer sur *Nouveau service* :
 
 ![](images/datalab_nouveau_service.png)
 
-Vous allez le choix entre un Rstudio ou un Vscode-r-python-julia. Là nous utiliserons Rstudio en cliquant sur Lancer : 
+Vous choisissez un Vscode-r-python-julia. Là nous utiliserons Rstudio en cliquant sur Lancer : 
 
-![](images/datalab_Rstudio_service.png)
+![](images/datalab_vscode_service.png)
 
-Avant de lancer le service nous conseillons de le configurer en ouvrant la boite *Configuration Rstudio*, puis d'aller dans l'onglet *Git*. Il faut recopier dans Repository le lien du repo copier précédemment :
+Avant de lancer le service nous conseillons de le configurer en ouvrant la boite *Configuration Vscode*, puis d'aller dans l'onglet *Git*. Il faut recopier dans Repository le lien du repo copié précédemment et vérifier les identifiants et token github :
 
-![](images/datalab_Rstudio_service_repo.png)
+![](images\conf_git_vscode.png)
 
 Puis clikquer sur *Lancer*.
-Après quelques instants le service Rstudio sera disponible et vous pourrez vous y connectant avec l'identifiant onyxia et le mot de passe indiqué à l'écran.
+Après quelques instants le service Vscode sera disponible et vous pourrez vous y connectant avec le mot de passe indiqué à l'écran.
 
-Si tout s'est bien passé, vous arrivez dans un Rstudio classique avec dans les Files un répertoire vide correspondant au répertoire du Github.
+Si tout s'est bien passé, vous arrivez dans un Vscode classique avec un répertoire vide correspondant au répertoire du Github.
 
 ## Installation des packages utiles
 
-La création d'un site de suivi de collecte nécessite l'installation de packages. Voici la commande à lancer :
+La création d'un site de suivi de collecte nécessite l'installation de packages. Pour cela, ouvrez un terminal VScode : 
+
+![](images\VSCode_new_terminal.png)
+
+Tapez r pour indiquer que vous allez saisir une commande R. Puis lancer la ligne de code suivante.
 
 ```{r}
 #| label: install_packages
 #| eval: false
 
-install.packages(c("tidyverse", "arrow", "shiny", "shinyWidgets", "bs4Dash", "shinymanager", "leaflet", "config", "DT", "echarts4r", "geojsonio", "glue", "golem", "htmlwidgets", "janitor", "sf", "testthat", "geojsonio"))
+install.packages(c("tidyverse", "arrow", "shiny", "shinyWidgets", "bs4Dash", "shinymanager", "leaflet", "config", "DT", "echarts4r", "geojsonio", "glue", "golem", "htmlwidgets", "janitor", "sf", "testthat", "geojsonio", "dockerfiler", "attachment", "rsconnect", "spelling"))
 
 ```
 
 ## Création du projet Golem
 
-Allez dans le répertoire créé dans votre Rstudio, puis lancer la commande : 
+Allez dans le répertoire créé dans votre Rstudio, créer un répertoire *suiviCollecte*, puis créer un fichier *init.R* et indiquez la ligne de code suivante : 
 
 ```{r}
 #| label: create_golem
 #| eval: false
-golem::create_golem(path = "suiviCollecteESEA", check_name = TRUE, open = TRUE)
+golem::create_golem(path = "../suiviCollecte", check_name = TRUE)
 ```
 
+Lancez la commande.
+
+Vous obtenez un répertoire suiviCollecte dans votre répertoire suivi_collecte_XXX qui sera votre répertoire de travail pour créer votre application shiny. Si le répertoire suiviCollecte n'est pas créé comme sous-répertoire de suivi_collecte_XXX, déplacer le.
+
+
+## Paramétrage Golem de votre package
+
+Le principe de Golem est d'encapsuler l'application shiny dans un package. Il y a quelques étapes à suivre afin de commencer à développer l'application shiny.
+Dans le répertoire Dev, ouvrez le fichier 01_start puis modifier et lancer les différentes commandes: 
+
+- Description du package :   
+
+```{r}
+#| label: golem_start
+#| eval: false
+golem::fill_desc(
+  pkg_name = "suiviCollecte", # The Name of the package containing the App
+  pkg_title = "Suivi de la collecte ESEA", # The Title of the package containing the App
+  pkg_description = "Site web de suivi de la collecte de l'enquête ESEA", # The Description of the package containing the App
+  author_first_name = "Anaël", # Your First Name
+  author_last_name = "Delorme", # Your Last Name
+  author_email = "anael.delorme@agriculture.gouv.Fr", # Your Email
+  repo_url = "https://github.com/anaelDelorme/suivi_collecte_esea", # The URL of the GitHub Repo (optional),
+  pkg_version = "0.0.0.9000" # The Version of the package containing the App
+)
+
+```
+
+- Lancement des commandes utiles :
+
+```{r}
+#| label: golem_start_2
+#| eval: false
+
+#################### A LANCER
+
+## Set {golem} options ----
+golem::set_golem_options()
+
+## Install the required dev dependencies ----
+golem::install_dev_deps()
+
+## Create Common Files ----
+## See ?usethis for more information
+usethis::use_mit_license("Golem User") # You can set another license here
+usethis::use_readme_rmd(open = FALSE)
+devtools::build_readme()
+# Note that `contact` is required since usethis version 2.1.5
+# If your {usethis} version is older, you can remove that param
+usethis::use_code_of_conduct(contact = "Golem User")
+usethis::use_lifecycle_badge("Experimental")
+usethis::use_news_md(open = FALSE)
+
+
+## Init Testing Infrastructure ----
+## Create a template for tests
+golem::use_recommended_tests()
+
+## Favicon ----
+# If you want to change the favicon (default is golem's one)
+golem::use_favicon() # path = "path/to/ico". Can be an online file.
+# golem::remove_favicon() # Uncomment to remove the default favicon
+
+## Add helper functions ----
+golem::use_utils_ui(with_test = TRUE)
+golem::use_utils_server(with_test = TRUE)
+
+################## NE PAS LANCER
+## Use git ----
+usethis::use_git()
+
+```
+
+Dans le répertoire Dev, ouvrez le fichier 02_start puis lancer les différentes commandes: 
+
+
+```{r}
+#| label: golem_dev_2
+#| eval: false
+
+### A Lancer :
+
+attachment::att_amend_desc()
+
+## Creates fct_* and utils_*
+golem::add_fct("helpers", with_test = TRUE)
+golem::add_utils("helpers", with_test = TRUE)
+
+## Vignette ----
+usethis::use_vignette("suiviCollecte")
+devtools::build_vignettes()
+
+
+############## Ne pas lancer le reste
+```
+
+## Commit et push dans github
+
+Vous êtes prêts à lancer le développement de votre application shiny. Nous vous recommandons de faire un commit / push de votre code dans Github. Pour cela il faut :    
+
+- aller dans *Source control" :
+
+![](images/vscode_first_git.png)
+
+- là il faut indiquer que tous les fichiers doivent être dans le commit et envoyés dans Github. En langague git, c'est *stage all changes*. Dans VScode c'est le bouton + à droite de *Changes*.
+
+![](images/vscode_stade_all_changes.png)
+
+- indiquer un libellé de commit puis à droite du Commit, choisir Commit & Push.
+
+![](images/golem_commit_and_push.png)
+
+- vérifiez dans Github que le code a bien été envoyé.

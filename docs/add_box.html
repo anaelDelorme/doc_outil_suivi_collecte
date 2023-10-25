@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Outil de suivi de collecte MASA – add_box</title>
+<title>Outil de suivi de collecte MASA - 6&nbsp; Ajout de box dans une page</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -25,7 +25,7 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./docker.html" rel="next">
+<link href="./add_shinymanager.html" rel="next">
 <link href="./squellete_appli.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -59,13 +59,13 @@ ul.task-list{list-style: none;}
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ajout de box dans une page</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -119,27 +119,32 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./squellete_appli.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">squellete_appli.html</span></a>
+  <a href="./squellete_appli.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Squelette de l’application Shiny</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./add_box.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">add_box.html</span></a>
+  <a href="./add_box.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ajout de box dans une page</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">docker.html</span></a>
+  <a href="./add_shinymanager.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">add_shinymanager.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deploy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">deploy.html</span></a>
+  <a href="./docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">docker.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">debug.html</span></a>
+  <a href="./deploy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">deploy.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">debug.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -151,14 +156,49 @@ ul.task-list{list-style: none;}
     </div>
 </nav>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#accès-aux-données" id="toc-accès-aux-données" class="nav-link active" data-scroll-target="#accès-aux-données"> <span class="header-section-number">6.1</span> Accès aux données</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/anaelDelorme/doc_outil_suivi_collecte/edit/main/add_box.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ajout de box dans une page</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+    
+  </div>
+  
+
+</header>
+
+<p>L’ajout de box dans une page se fait dans le programme R/mod_name_of_module1_ui. Dance ce programme il y a 3 parties à modifier :</p>
+<ul>
+<li>dans l’<strong>entête</strong> on doit ajouter les packages à importer (ou les fonctions des packages),<br>
+</li>
+<li>la fonction <strong>mod_suivi_collecte_ui</strong> qui va gérer l’affichage dans la page : les lignes et les box que l’on ajoute,<br>
+</li>
+<li>la fonction <strong>mod_suivi_collecte_server</strong> qui permet de faire les calculs et les traitements qui seront affichés dans les box.</li>
+</ul>
+<p>La distiction <em>ui</em> et <em>server</em> est classique pour toute application shiny. Voir la <a href="https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/">documentation shiny</a> si besoin.</p>
+<section id="accès-aux-données" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="accès-aux-données"><span class="header-section-number">6.1</span> Accès aux données</h2>
+<p>Pour créer les box de suivi de la collecte, il faut avoir un accès à la donnée. Pour rappel la donnée est stockée au format parquet dans le bucket partagé.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -261,12 +301,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="./squellete_appli.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">squellete_appli.html</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Squelette de l’application Shiny</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./docker.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">docker.html</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./add_shinymanager.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">add_shinymanager.html</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

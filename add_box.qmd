@@ -1,0 +1,13 @@
+# Ajout de box dans une page
+
+L'ajout de box dans une page se fait dans le programme R/mod_name_of_module1_ui. Dance ce programme il y a 3 parties à modifier :
+
+- dans l'**entête** on doit ajouter les packages à importer (ou les fonctions des packages),    
+- la fonction **mod_suivi_collecte_ui** qui va gérer l'affichage dans la page : les lignes et les box que l'on ajoute,    
+- la fonction **mod_suivi_collecte_server** qui permet de faire les calculs et les traitements qui seront affichés dans les box.
+
+La distiction *ui* et *server* est classique pour toute application shiny. Voir la [documentation shiny](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/) si besoin.
+
+## Accès aux données
+
+Pour créer les box de suivi de la collecte, il faut avoir un accès à la donnée. Pour rappel la donnée est stockée au format parquet dans le bucket partagé.

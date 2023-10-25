@@ -182,27 +182,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./squellete_appli.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">squellete_appli.html</span></a>
+  <a href="./squellete_appli.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Squelette de l’application Shiny</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./add_box.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">add_box.html</span></a>
+  <a href="./add_box.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ajout de box dans une page</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">docker.html</span></a>
+  <a href="./add_shinymanager.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">add_shinymanager.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deploy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">deploy.html</span></a>
+  <a href="./docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">docker.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">debug.html</span></a>
+  <a href="./deploy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">deploy.html</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./debug.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">debug.html</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -223,6 +228,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#création-dun-service-rstudio-dans-le-datalab" id="toc-création-dun-service-rstudio-dans-le-datalab" class="nav-link" data-scroll-target="#création-dun-service-rstudio-dans-le-datalab"> <span class="header-section-number">4.2</span> Création d’un service Rstudio dans le datalab</a></li>
   <li><a href="#installation-des-packages-utiles" id="toc-installation-des-packages-utiles" class="nav-link" data-scroll-target="#installation-des-packages-utiles"> <span class="header-section-number">4.3</span> Installation des packages utiles</a></li>
   <li><a href="#création-du-projet-golem" id="toc-création-du-projet-golem" class="nav-link" data-scroll-target="#création-du-projet-golem"> <span class="header-section-number">4.4</span> Création du projet Golem</a></li>
+  <li><a href="#paramétrage-golem-de-votre-package" id="toc-paramétrage-golem-de-votre-package" class="nav-link" data-scroll-target="#paramétrage-golem-de-votre-package"> <span class="header-section-number">4.5</span> Paramétrage Golem de votre package</a></li>
+  <li><a href="#commit-et-push-dans-github" id="toc-commit-et-push-dans-github" class="nav-link" data-scroll-target="#commit-et-push-dans-github"> <span class="header-section-number">4.6</span> Commit et push dans github</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/anaelDelorme/doc_outil_suivi_collecte/edit/main/dev_app_shiny.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -248,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>L’application de suivi de collecte est une application shiny que nous allons déployer dans le datalab.</p>
 <p>Pour cela nous préconisons quelques principes :</p>
 <ul>
-<li>utiliser le package <a href="https://github.com/ThinkR-open/golem">Golem</a> développé par Thinkr. Il encapsule l’application shiny dans un objectif de mise en production.<br>
+<li>utiliser le package <a href="https://github.com/ThinkR-open/golem">Golem</a> développé par Thinkr. Il encapsule l’application shiny dans un package avec un objectif de mise en production (inclusion de tout ce qui est utile au déploiement).<br>
 </li>
 <li>utiliser le datalab pour développer l’application.<br>
 </li>
@@ -275,31 +282,131 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="création-dun-service-rstudio-dans-le-datalab" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="création-dun-service-rstudio-dans-le-datalab"><span class="header-section-number">4.2</span> Création d’un service Rstudio dans le datalab</h2>
-<p>Vous pourriez tout à fait travailler sur Cerise ou sur votre poste local. Nous vous proposons de travailler sur le datalab directement : vous avez accès à une configuration proche de celle du déploiement de votre site.</p>
+<p>Vous pourriez tout à fait travailler sur Cerise ou sur votre poste local. Nous vous proposons de travailler sur le datalab directement : vous avez accès à une configuration proche de celle du déploiement de votre site. Et nous vous conseillons d’utiliser un VSCode plutôt qu’un Rstudio.</p>
 <p>Après vous être connecté au datalab, vous aller dans <em>Mes services</em>.</p>
 <p><img src="images/datalab_mes_services.png" class="img-fluid"></p>
 <p>Puis vous cliquer sur <em>Nouveau service</em> :</p>
 <p><img src="images/datalab_nouveau_service.png" class="img-fluid"></p>
-<p>Vous allez le choix entre un Rstudio ou un Vscode-r-python-julia. Là nous utiliserons Rstudio en cliquant sur Lancer :</p>
-<p><img src="images/datalab_Rstudio_service.png" class="img-fluid"></p>
-<p>Avant de lancer le service nous conseillons de le configurer en ouvrant la boite <em>Configuration Rstudio</em>, puis d’aller dans l’onglet <em>Git</em>. Il faut recopier dans Repository le lien du repo copier précédemment :</p>
-<p><img src="images/datalab_Rstudio_service_repo.png" class="img-fluid"></p>
-<p>Puis clikquer sur <em>Lancer</em>. Après quelques instants le service Rstudio sera disponible et vous pourrez vous y connectant avec l’identifiant onyxia et le mot de passe indiqué à l’écran.</p>
-<p>Si tout s’est bien passé, vous arrivez dans un Rstudio classique avec dans les Files un répertoire vide correspondant au répertoire du Github.</p>
+<p>Vous choisissez un Vscode-r-python-julia. Là nous utiliserons Rstudio en cliquant sur Lancer :</p>
+<p><img src="images/datalab_vscode_service.png" class="img-fluid"></p>
+<p>Avant de lancer le service nous conseillons de le configurer en ouvrant la boite <em>Configuration Vscode</em>, puis d’aller dans l’onglet <em>Git</em>. Il faut recopier dans Repository le lien du repo copié précédemment et vérifier les identifiants et token github :</p>
+<p><img src="images\conf_git_vscode.png" class="img-fluid"></p>
+<p>Puis clikquer sur <em>Lancer</em>. Après quelques instants le service Vscode sera disponible et vous pourrez vous y connectant avec le mot de passe indiqué à l’écran.</p>
+<p>Si tout s’est bien passé, vous arrivez dans un Vscode classique avec un répertoire vide correspondant au répertoire du Github.</p>
 </section>
 <section id="installation-des-packages-utiles" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="installation-des-packages-utiles"><span class="header-section-number">4.3</span> Installation des packages utiles</h2>
-<p>La création d’un site de suivi de collecte nécessite l’installation de packages. Voici la commande à lancer :</p>
+<p>La création d’un site de suivi de collecte nécessite l’installation de packages. Pour cela, ouvrez un terminal VScode :</p>
+<p><img src="images\VSCode_new_terminal.png" class="img-fluid"></p>
+<p>Tapez r pour indiquer que vous allez saisir une commande R. Puis lancer la ligne de code suivante.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"arrow"</span>, <span class="st">"shiny"</span>, <span class="st">"shinyWidgets"</span>, <span class="st">"bs4Dash"</span>, <span class="st">"shinymanager"</span>, <span class="st">"leaflet"</span>, <span class="st">"config"</span>, <span class="st">"DT"</span>, <span class="st">"echarts4r"</span>, <span class="st">"geojsonio"</span>, <span class="st">"glue"</span>, <span class="st">"golem"</span>, <span class="st">"htmlwidgets"</span>, <span class="st">"janitor"</span>, <span class="st">"sf"</span>, <span class="st">"testthat"</span>, <span class="st">"geojsonio"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"arrow"</span>, <span class="st">"shiny"</span>, <span class="st">"shinyWidgets"</span>, <span class="st">"bs4Dash"</span>, <span class="st">"shinymanager"</span>, <span class="st">"leaflet"</span>, <span class="st">"config"</span>, <span class="st">"DT"</span>, <span class="st">"echarts4r"</span>, <span class="st">"geojsonio"</span>, <span class="st">"glue"</span>, <span class="st">"golem"</span>, <span class="st">"htmlwidgets"</span>, <span class="st">"janitor"</span>, <span class="st">"sf"</span>, <span class="st">"testthat"</span>, <span class="st">"geojsonio"</span>, <span class="st">"dockerfiler"</span>, <span class="st">"attachment"</span>, <span class="st">"rsconnect"</span>, <span class="st">"spelling"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="création-du-projet-golem" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="création-du-projet-golem"><span class="header-section-number">4.4</span> Création du projet Golem</h2>
-<p>Allez dans le répertoire créé dans votre Rstudio, puis lancer la commande :</p>
+<p>Allez dans le répertoire créé dans votre Rstudio, créer un répertoire <em>suiviCollecte</em>, puis créer un fichier <em>init.R</em> et indiquez la ligne de code suivante :</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>golem<span class="sc">::</span><span class="fu">create_golem</span>(<span class="at">path =</span> <span class="st">"suiviCollecteESEA"</span>, <span class="at">check_name =</span> <span class="cn">TRUE</span>, <span class="at">open =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>golem<span class="sc">::</span><span class="fu">create_golem</span>(<span class="at">path =</span> <span class="st">"../suiviCollecte"</span>, <span class="at">check_name =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Lancez la commande.</p>
+<p>Vous obtenez un répertoire suiviCollecte dans votre répertoire suivi_collecte_XXX qui sera votre répertoire de travail pour créer votre application shiny. Si le répertoire suiviCollecte n’est pas créé comme sous-répertoire de suivi_collecte_XXX, déplacer le.</p>
+</section>
+<section id="paramétrage-golem-de-votre-package" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="paramétrage-golem-de-votre-package"><span class="header-section-number">4.5</span> Paramétrage Golem de votre package</h2>
+<p>Le principe de Golem est d’encapsuler l’application shiny dans un package. Il y a quelques étapes à suivre afin de commencer à développer l’application shiny. Dans le répertoire Dev, ouvrez le fichier 01_start puis modifier et lancer les différentes commandes:</p>
+<ul>
+<li>Description du package :</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>golem<span class="sc">::</span><span class="fu">fill_desc</span>(</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">pkg_name =</span> <span class="st">"suiviCollecte"</span>, <span class="co"># The Name of the package containing the App</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">pkg_title =</span> <span class="st">"Suivi de la collecte ESEA"</span>, <span class="co"># The Title of the package containing the App</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">pkg_description =</span> <span class="st">"Site web de suivi de la collecte de l'enquête ESEA"</span>, <span class="co"># The Description of the package containing the App</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">author_first_name =</span> <span class="st">"Anaël"</span>, <span class="co"># Your First Name</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">author_last_name =</span> <span class="st">"Delorme"</span>, <span class="co"># Your Last Name</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">author_email =</span> <span class="st">"anael.delorme@agriculture.gouv.Fr"</span>, <span class="co"># Your Email</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">repo_url =</span> <span class="st">"https://github.com/anaelDelorme/suivi_collecte_esea"</span>, <span class="co"># The URL of the GitHub Repo (optional),</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">pkg_version =</span> <span class="st">"0.0.0.9000"</span> <span class="co"># The Version of the package containing the App</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Lancement des commandes utiles :</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">#################### A LANCER</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="do">## Set {golem} options ----</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>golem<span class="sc">::</span><span class="fu">set_golem_options</span>()</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="do">## Install the required dev dependencies ----</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>golem<span class="sc">::</span><span class="fu">install_dev_deps</span>()</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Create Common Files ----</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="do">## See ?usethis for more information</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_mit_license</span>(<span class="st">"Golem User"</span>) <span class="co"># You can set another license here</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_readme_rmd</span>(<span class="at">open =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">build_readme</span>()</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Note that `contact` is required since usethis version 2.1.5</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co"># If your {usethis} version is older, you can remove that param</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_code_of_conduct</span>(<span class="at">contact =</span> <span class="st">"Golem User"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_lifecycle_badge</span>(<span class="st">"Experimental"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_news_md</span>(<span class="at">open =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="do">## Init Testing Infrastructure ----</span></span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="do">## Create a template for tests</span></span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a>golem<span class="sc">::</span><span class="fu">use_recommended_tests</span>()</span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="do">## Favicon ----</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="co"># If you want to change the favicon (default is golem's one)</span></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>golem<span class="sc">::</span><span class="fu">use_favicon</span>() <span class="co"># path = "path/to/ico". Can be an online file.</span></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># golem::remove_favicon() # Uncomment to remove the default favicon</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a><span class="do">## Add helper functions ----</span></span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>golem<span class="sc">::</span><span class="fu">use_utils_ui</span>(<span class="at">with_test =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>golem<span class="sc">::</span><span class="fu">use_utils_server</span>(<span class="at">with_test =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="do">################## NE PAS LANCER</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="do">## Use git ----</span></span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_git</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Dans le répertoire Dev, ouvrez le fichier 02_start puis lancer les différentes commandes:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">### A Lancer :</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>attachment<span class="sc">::</span><span class="fu">att_amend_desc</span>()</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="do">## Creates fct_* and utils_*</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>golem<span class="sc">::</span><span class="fu">add_fct</span>(<span class="st">"helpers"</span>, <span class="at">with_test =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>golem<span class="sc">::</span><span class="fu">add_utils</span>(<span class="st">"helpers"</span>, <span class="at">with_test =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="do">## Vignette ----</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>usethis<span class="sc">::</span><span class="fu">use_vignette</span>(<span class="st">"suiviCollecte"</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">build_vignettes</span>()</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="do">############## Ne pas lancer le reste</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="commit-et-push-dans-github" class="level2" data-number="4.6">
+<h2 data-number="4.6" class="anchored" data-anchor-id="commit-et-push-dans-github"><span class="header-section-number">4.6</span> Commit et push dans github</h2>
+<p>Vous êtes prêts à lancer le développement de votre application shiny. Nous vous recommandons de faire un commit / push de votre code dans Github. Pour cela il faut :</p>
+<ul>
+<li>aller dans *Source control” :</li>
+</ul>
+<p><img src="images/vscode_first_git.png" class="img-fluid"></p>
+<ul>
+<li>là il faut indiquer que tous les fichiers doivent être dans le commit et envoyés dans Github. En langague git, c’est <em>stage all changes</em>. Dans VScode c’est le bouton + à droite de <em>Changes</em>.</li>
+</ul>
+<p><img src="images/vscode_stade_all_changes.png" class="img-fluid"></p>
+<ul>
+<li>indiquer un libellé de commit puis à droite du Commit, choisir Commit &amp; Push.</li>
+</ul>
+<p><img src="images/golem_commit_and_push.png" class="img-fluid"></p>
+<ul>
+<li>vérifiez dans Github que le code a bien été envoyé.</li>
+</ul>
 
 
 </section>
@@ -410,7 +517,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./squellete_appli.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">squellete_appli.html</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Squelette de l’application Shiny</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
