@@ -66,7 +66,7 @@ Tapez r pour indiquer que vous allez saisir une commande R. Puis lancer la ligne
 #| label: install_packages
 #| eval: false
 
-install.packages(c("tidyverse", "arrow", "shiny", "shinyWidgets", "bs4Dash", "shinymanager", "leaflet", "config", "DT", "echarts4r", "geojsonio", "glue", "golem", "htmlwidgets", "janitor", "sf", "testthat", "geojsonio", "dockerfiler", "attachment", "rsconnect", "spelling"))
+install.packages(c("tidyverse", "arrow", "shiny", "shinyWidgets", "bs4Dash", "shinymanager", "leaflet", "config", "DT", "echarts4r", "geojsonio", "glue", "golem", "htmlwidgets", "janitor", "sf", "testthat", "geojsonio", "dockerfiler", "attachment", "rsconnect", "spelling", "aws.s3"))
 
 ```
 

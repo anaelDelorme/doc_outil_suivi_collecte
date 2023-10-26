@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Outil de suivi de collecte MASA – debug</title>
+<title>Outil de suivi de collecte MASA - 10&nbsp; Débugage de l’application</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -59,13 +59,13 @@ ul.task-list{list-style: none;}
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Débugage de l’application</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -144,7 +144,7 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./debug.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">debug.html</span></a>
+  <a href="./debug.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Débugage de l’application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -156,14 +156,42 @@ ul.task-list{list-style: none;}
     </div>
 </nav>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#vscode-pour-le-shiny-cannot-open-the-connection" id="toc-vscode-pour-le-shiny-cannot-open-the-connection" class="nav-link active" data-scroll-target="#vscode-pour-le-shiny-cannot-open-the-connection"> <span class="header-section-number">10.1</span> VScode pour le shiny “cannot open the connection”</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/anaelDelorme/doc_outil_suivi_collecte/edit/main/debug.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Débugage de l’application</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+    
+  </div>
+  
+
+</header>
+
+<section id="vscode-pour-le-shiny-cannot-open-the-connection" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="vscode-pour-le-shiny-cannot-open-the-connection"><span class="header-section-number">10.1</span> VScode pour le shiny “cannot open the connection”</h2>
+<p>Dans le développement de votre application, il se peut que vous rencontriez cette erreur :</p>
+<p>“cannot open the connectionwarning messages from top-level task callback ‘vsc.workspace’ Warning message: In file(con,”w”) : cannot open file ‘/tmp/RtmpE07yck/vscode-R/workspace.json’: No such file or directory”</p>
+<p>Cela peut arriver après une longue attente dans le service Vscode (par exemple une nuit). Pour corriger, il faut commiter et pusher le code dans github. Puis vous supprimez le service VSCode et vous recréez un service VSCode en configurant le répertoire github. Pensez à lancer l’installation les packages utiles. Il peut être utile de lancer dans le terminal la commande setwd(“/home/onyxia/work/suivi_collecte_XXXXX/suiviCollecte/”) pour indiquer où trouver le projet Golem.</p>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

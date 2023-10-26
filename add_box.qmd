@@ -3,11 +3,331 @@
 L'ajout de box dans une page se fait dans le programme R/mod_name_of_module1_ui. Dance ce programme il y a 3 parties à modifier :
 
 - dans l'**entête** on doit ajouter les packages à importer (ou les fonctions des packages),    
-- la fonction **mod_suivi_collecte_ui** qui va gérer l'affichage dans la page : les lignes et les box que l'on ajoute,    
-- la fonction **mod_suivi_collecte_server** qui permet de faire les calculs et les traitements qui seront affichés dans les box.
+- la fonction **mod_name_of_module1_ui** qui va gérer l'affichage dans la page : les lignes et les box que l'on ajoute,    
+- la fonction **mod_name_of_module1_server** qui permet de faire les calculs et les traitements qui seront affichés dans les box.
 
 La distiction *ui* et *server* est classique pour toute application shiny. Voir la [documentation shiny](https://shiny.posit.co/r/getstarted/shiny-basics/lesson1/) si besoin.
 
 ## Accès aux données
 
 Pour créer les box de suivi de la collecte, il faut avoir un accès à la donnée. Pour rappel la donnée est stockée au format parquet dans le bucket partagé.
+
+### Le plus simple : chargement à chaque module
+
+Dans chaque module, charger les données avant de lancer les fonction ui et server : 
+
+```{r}
+#| label: import_data
+#| eval: false
+
+#' @importFrom aws.s3 s3read_using
+#' @importFrom arrow read_parquet
+#' @noRd
+
+data_suivi <- aws.s3::s3read_using(
+  FUN = arrow::read_parquet,
+  object = "ESEA/suivi.parquet",
+  bucket = "projet-suivi-collecte-masa",
+  opts = list("region" = "")
+)
+
+```
+
+Pour vérifier que l'import des données fonctionne, vous pouvez modifier le fichier de module de la manière suivante :
+
+```{r}
+#| label: test_load_data
+#| eval: false
+
+mod_suivi_collecte_ui <- function(id){
+  ns <- NS(id)
+  tagList(
+    shiny::verbatimTextOutput(ns("data_test_load"))
+  )
+}
+
+mod_suivi_collecte_server <- function(id){
+  moduleServer(id, function(input, output, session){
+    ns <- session$ns
+    output$data_test_load <-  renderText({
+        data <- data_suivi
+        nrow(data)
+    })
+  })
+}
+
+
+```
+
+### Mieux : charger les données une seule fois
+
+Pour être plus propre, on peut charger les données une seule fois en utilisant la [technique du petit r](https://rtask.thinkr.fr/fr/la-communication-entre-modules-et-ses-caprices/). 
+
+Dans le fichier R/app_server.R il faut créer un r qui soit un **reactiveValues**, puis charger les jeux de données dans ce r, et passer ce r en paramètre des mod_XXXXX_server. Exemple : 
+
+```{r}
+#| label: import_data_global
+#| eval: false
+
+app_server <- function(input, output, session) {
+  r <- reactiveValues()
+  observe({
+    r$data_suivi <- aws.s3::s3read_using(
+       FUN = arrow::read_parquet,
+        object = "ESEA/suivi.parquet",
+        bucket = "projet-suivi-collecte-masa",
+        opts = list("region" = "")
+        )  
+
+    
+
+  })
+ # Your application server logic
+  mod_suivi_collecte_server("suivi_collecte_1",r)
+}
+
+
+```
+
+Puis dans le mod_XXXXX_ui, il faut mettre à jour la fonction **mod_XXXX_server** pour intégrer le r. Exemple :
+
+```{r}
+#| label: add_r_in_mod
+#| eval: false
+
+mod_suivi_collecte_ui <- function(id){
+  ns <- NS(id)
+  tagList(
+    shiny::verbatimTextOutput(ns("data_test_load"))
+  )
+}
+
+mod_suivi_collecte_server <- function(id, r){
+  moduleServer(id, function(input, output, session){
+    ns <- session$ns
+    output$data_test_load <-  renderText({r$data_suivi })
+  })
+}
+
+```
+
+Pensez ensuite à lancer un **attachment::att_amend_desc()** afin d'intégrer les packages dans les dépendances.
+
+
+## Ajouter des lignes
+
+Le principe du body de bs4Dash est de mettre des lignes et dans chaque ligne mettre des box. Pour ajouter une ligne, c'est très simple, il faut ajouter un **fluidRow()** dans l'ui du module (dans le **tagList**).
+
+## Ajouter une box d'info ou de valeur
+
+Côté ui, il faut ajouter une valueBoxOupt ou une infoBoxOutput.
+Côté server, il faut créer un renderValueBox ou un renderValueBox.
+
+Attention, en golem pour passer du server à l'ui il faut envoyer l'output avec un ns(). Par exemple si l'output est "ma_value_box" alors dans l'ui il faudra appeler renderValueBox(ns("ma_value_box")).
+
+Dans l'exemple ci-dessous, on utilise la stratégie du petit r pour que les données soient utilisées pour tout le site. Dans la partie server, il faudra mettre le code dans un Observe pour avoir accès aux reactiveValues du petit r.
+
+Exemple :
+
+```{r}
+#| label: ajout_simple_box
+#| eval: false
+mod_suivi_collecte_ui <- function(id){
+  ns <- NS(id)
+  tagList(
+    fluidRow(
+          infoBoxOutput(ns("nb_questionnaires")),
+          valueBoxOutput(ns("taux_collecte")),
+          valueBoxOutput(ns("taux_reponse"))
+        )
+  )
+}
+
+mod_suivi_collecte_server <- function(id, r){
+  moduleServer(id, function(input, output, session){
+    ns <- session$ns
+    observe({
+      questionnaires_totaux_esea <- r$data_suivi %>% nrow()
+      questionnaires_collectes <-  r$data_suivi %>% filter(ETAT_CONTROLE  != 1) %>% nrow()
+      questionnaires_valides <-  r$data_suivi %>% filter(ETAT_CONTROLE  == 5) %>% nrow()
+
+      output$nb_questionnaires <- renderInfoBox({
+        infoBox(
+          title = "Nombre total de questionnaires",
+          fill = TRUE,
+          gradient = TRUE,
+          color = "info",
+          value = questionnaires_totaux_esea,
+          icon = icon("paper-plane")
+        )
+      })
+
+       output$taux_collecte <- renderValueBox({
+        valueBox(
+          value = glue(round(100 *(questionnaires_collectes / questionnaires_totaux_esea),3), ' %'),
+          subtitle = "Taux de collecte (questionnaires qui ne sont plus en état initial)",
+        color = "primary",
+        icon = icon("circle-check")
+        )
+      })
+
+      output$taux_reponse <- renderValueBox({
+        valueBox(
+          value = glue(round(100 *(questionnaires_valides / questionnaires_totaux_esea),3), ' %'),
+          subtitle = "Taux de réponse (questionnaires validés)",
+        color = "teal",
+        icon = icon("thumbs-up")
+        )
+      })
+
+    })
+
+  })
+}
+
+
+
+```
+
+## Ajouter une box de contenu
+
+Pour ajouter des box de contenus, on fera la même chose que pour les box de valeur / info : on ajoute une fluidRow et on y met une ou plusieurs **bs4Dash::box**. Parmi les paramètres de la box on pourra gérer le titre, le statut (la couleur), la taille en hauteur et en largeur...
+
+### Avec un graphique
+
+On peut facilement ajouter des graphiques ggplot2. Mais pour un rendu plus joli sur le web nous préconisons l'utilisation de [echarts4r](https://echarts4r.john-coene.com/). Dans une bs4Dash::box, on ajoutera un echarts4rOutput et dans le server on créera un renderEcharts4r.
+
+Voici un exemple : 
+
+```{r}
+#| label: ajout_graphique
+#| eval: false
+
+# côté ui, dans le tagList :
+
+fluidRow(
+      bs4Dash::box(
+          title = "Avancement de la collecte",
+          status = "orange",
+          echarts4rOutput(ns("pie_questionnaire_par_etat"))
+      )
+    )    
+
+# côté server
+    output$pie_questionnaire_par_etat <- renderEcharts4r({
+       dossier <- r$data_suivi
+       
+       questionnaire_par_etat <- dossier %>%
+         count(ETAT_CONTROLE) %>%
+         mutate(
+          ETAT_CONTROLE = case_when(
+            ETAT_CONTROLE == 1 ~ "Non collecté",
+            ETAT_CONTROLE == 5 ~ "Validé",
+            ETAT_CONTROLE == 4 ~ "A confirmer",
+            ETAT_CONTROLE == 2 ~ "A compléter",
+            ETAT_CONTROLE == 3 ~ "A corriger",
+            TRUE ~ "Indéterminé"
+          )
+         )
+
+       questionnaire_par_etat %>%
+        e_charts(ETAT_CONTROLE) %>%
+        e_pie(n, radius = c("40%", "70%")) |>
+        e_tooltip(formatter = htmlwidgets::JS("function(params) {return params.name + ': ' + params.value;}"))
+    })
+
+
+
+```
+
+### Avec une carte
+
+Pour les cartes, nous préconisons leaflet qui permet de faire des cartes web zoomable assez chouettes.
+
+Avant tout, il faut charger les fonds de carte. Nous préconisons l'utilisation de topojson accessible en ligne :
+
+- [Régions de France](https://raw.githubusercontent.com/neocarto/resources/master/geometries/France/regions.topojson )
+- [Départements de France](https://raw.githubusercontent.com/neocarto/resources/master/geometries/France/departements.topojson)
+
+Nous les ajoutons au r pour qu'ils soient accessibles dans tous les modules, en passant par le package **geojsonio** (à ajouter aux imports).
+
+Pour que **geojsonio** fonctionne, il faut installer plusieurs librairies dans le serveur hébergeant le VSCode. Pour cela il faut ouvrir un nouveau terminal (un terminal de base, pas un terminal R) et lancer successivement les commandes :
+
+```{python}
+#| label: install_linux_lib
+#| eval: false
+sudo apt-get update
+sudo apt-get -y install libudunits2-dev
+sudo apt-get -y install libproj-dev
+sudo apt-get -y install libgdal-dev
+```
+
+Puis on peut ajouter les topojson à notre petit r, dans le fichier R/app_server.R :
+
+```{r}
+#| label: add_topojson
+#| eval: false
+
+r$map_region <- geojsonio::topojson_read("https://raw.githubusercontent.com/neocarto/resources/master/geometries/France/regions.topojson")
+
+r$map_departements <- geojsonio::topojson_read("https://raw.githubusercontent.com/neocarto/resources/master/geometries/France/departements.topojson")
+
+```
+
+Nous pouvons maintenant ajouter une box contenant un **leafletOutput** et créer la foncion **renderLeaflet** côté serveur. Voici un exemple de carte choroplèthe par région :
+
+```{r}
+#| label: carte_leaflet
+#| eval: false
+
+### dans la partie ui
+fluidRow(
+      bs4Dash::box(
+          title = "Avancement de la collecte",
+          status = "indigo",
+          leafletOutput(ns("map_taux_collecte"))
+      )
+    )    
+
+
+### dans la partie server
+
+output$map_taux_collecte <- renderLeaflet({
+        
+        suivi_par_region <- r$data_suivi %>%
+          mutate(collecte = ifelse(ETAT_CONTROLE == 1 , "Non collecté", 'Collecté')) %>%
+          group_by(collecte, REP_CODE_REG_1) %>%
+          count() %>%
+          pivot_wider(names_from = collecte, values_from = n,  values_fill = 0) %>%
+          filter(!is.na(REP_CODE_REG_1)) %>%
+          mutate(total = Collecté + `Non collecté`) %>%
+          mutate(taux_collecte = Collecté/total)
+
+        data_map <- r$map_regions %>%
+          left_join(suivi_par_region, by = c("REG" = "REP_CODE_REG_1"))
+
+        pal <- colorNumeric("RdYlGn", NULL)
+
+        leaflet::leaflet(data_map) %>%
+          addPolygons(stroke = FALSE, 
+              smoothFactor = 0.3, 
+              fillOpacity = 1,
+              fillColor = ~pal(taux_collecte),
+              label = ~paste0(Name, ": ",
+                              round(100 * taux_collecte,0),
+                              " % / ",Collecté," collectés pour ", total," au total.")) %>%
+              addLegend(pal = pal, values = ~round(100*taux_collecte,0), title = "Taux de collecte",
+                    opacity = 1, position = "bottomright", na.label= "?",labFormat = labelFormat(suffix=" %"))
+
+
+    })
+
+```
+
+
+### Avec une liste
+
+### Ajout de boutons
+
+### Utilisation de la fenêtre pliable de droite
+

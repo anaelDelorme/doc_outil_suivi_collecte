@@ -164,7 +164,7 @@ Vous pouvez trouver des favicon sur le site [IconFinder](https://www.iconfinder.
 
 ## Lancement application shiny
 
-Vous pouvez à présent visualiser le squelette de votre application en lançant les commandes du programme dev/run_dev.R
+Vous pouvez à présent visualiser le squelette de votre application en lançant les commandes du programme dev/run_dev.R. 
 
 ```{r}
 #| label: run_dev
