@@ -260,6 +260,7 @@ sudo apt-get update
 sudo apt-get -y install libudunits2-dev
 sudo apt-get -y install libproj-dev
 sudo apt-get -y install libgdal-dev
+sudo apt-get install pandoc
 ```
 
 Puis on peut ajouter les topojson à notre petit r, dans le fichier R/app_server.R :
@@ -325,9 +326,89 @@ output$map_taux_collecte <- renderLeaflet({
 ```
 
 
-### Avec une liste
+### Avec un tableau
+
+Il est possible d'afficher des tableaux dans les box. Nous préconisons l'utilisation du package DT (à ajouter dans les imports) : côté ui on aura un **dataTableOutput** et côté serveur un **renderDataTable**. Il est possible grâce à ce package et à des extensions indiquées dans la fonction datatable d'ajouter des scollers et des boutons (par exemple : export PDF, xlsx, csv...).
+
+Voici un exemple : 
+
+```{r}
+#| label: table
+#| eval: false
+# Côté UI
+fluidRow(
+          bs4Dash::box(title = "Liste des dossiers",
+                   status = "orange",
+                   DT::dataTableOutput(ns("table_dossiers")),
+                   width = 12,
+                   height = "900px"
+      )
+      )
+
+# Côté Server
+     output$table_dossiers <-
+         DT::renderDataTable(
+            dossier <- r$data_suivi %>%
+                datatable(rownames = FALSE,
+                 extensions = c("Scroller", "FixedColumns", "Buttons", "Select"),
+                 selection = 'none',
+                   filter = list(position = 'top',
+                      clear = TRUE,
+                      plain = FALSE
+                   ),
+                 options = list(
+                   dom = "Bfrtip",
+                   # scroll :
+                   scrollY = 750, scrollX = 400, scroller = TRUE,
+                   # fixer les colonnes :
+                   fixedColumns = list(leftColumns = 1),
+                   # selection :
+                   select = list(style = 'os', items = 'row'),
+                   buttons = c(
+                     # enregistrements
+                      'csv', 'excel', 'pdf',
+                     # selection des elements
+                     'selectAll', 'selectNone', 'selectRows'
+                   )
+                 )
+                )
+         )
+
+
+```
+
 
 ### Ajout de boutons
 
+Dans une box il est possible d'ajouter des boutons afin de changer le rendu de la carte ou du graphique. Par exemple on a une carte d'avancement de collecte par région. On pourrait mettre un bouton pour afficher la carte par département. Nous préconisons l'utilisation de [shinyWidgets](https://shinyapps.dreamrs.fr/shinyWidgets/) qui offre des composants assez ergonomiques. 
+
+Le code devra être mis dans la partie ui, et récupérer dans la partie server pour faire évoluer l'affichage. Prenons l'exemple d'un bouton région / département pour l'affichage d'une carte. 
+
+```{r}
+#| label: leaflet
+#| eval: false
+# Côté UI
+
+      bs4Dash::box(
+          title = "Avancement de la collecte",
+          status = "indigo",
+          shinyWidgets::awesomeRadio(
+            inputId = ns("map_region_departement"), #### Attention : ne pas oublier le ns()
+            label = NULL, 
+            choices = c("Région", "Département"),
+            selected = "Région",
+            inline = TRUE,
+            status = "success"
+          ),
+          leafletOutput(ns("map_taux_collecte"))
+      )
+
+# Côté server
+
+
+```
+
+
 ### Utilisation de la fenêtre pliable de droite
 
+*A compléter*

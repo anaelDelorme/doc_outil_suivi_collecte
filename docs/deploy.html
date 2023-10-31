@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Outil de suivi de collecte MASA – deploy</title>
+<title>Outil de suivi de collecte MASA - 8&nbsp; Déploiement de l’application</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -15,6 +15,69 @@ span.underline{text-decoration: underline;}
 div.column{display: inline-block; vertical-align: top; width: 50%;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -25,8 +88,8 @@ ul.task-list{list-style: none;}
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./debug.html" rel="next">
-<link href="./docker.html" rel="prev">
+<link href="./modify.html" rel="next">
+<link href="./add_shinymanager.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -59,13 +122,13 @@ ul.task-list{list-style: none;}
 
 </head>
 
-<body class="nav-sidebar floating fullcontent">
+<body class="nav-sidebar floating">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">(Untitled)</h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Déploiement de l’application</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -129,17 +192,17 @@ ul.task-list{list-style: none;}
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./add_shinymanager.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">add_shinymanager.html</span></a>
+  <a href="./add_shinymanager.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sécurisation de l’application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">docker.html</span></a>
+  <a href="./deploy.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Déploiement de l’application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deploy.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">deploy.html</span></a>
+  <a href="./modify.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modifier une application existante</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -156,14 +219,261 @@ ul.task-list{list-style: none;}
     </div>
 </nav>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#vérification-du-packaging-du-r-package" id="toc-vérification-du-packaging-du-r-package" class="nav-link active" data-scroll-target="#vérification-du-packaging-du-r-package"> <span class="header-section-number">8.1</span> Vérification du packaging du R package</a></li>
+  <li><a href="#création-du-docker" id="toc-création-du-docker" class="nav-link" data-scroll-target="#création-du-docker"> <span class="header-section-number">8.2</span> Création du Docker</a>
+  <ul class="collapse">
+  <li><a href="#dockerfile" id="toc-dockerfile" class="nav-link" data-scroll-target="#dockerfile"> <span class="header-section-number">8.2.1</span> Dockerfile</a></li>
+  <li><a href="#création-dun-repository-sur-dockerhub" id="toc-création-dun-repository-sur-dockerhub" class="nav-link" data-scroll-target="#création-dun-repository-sur-dockerhub"> <span class="header-section-number">8.2.2</span> Création d’un repository sur DockerHub</a></li>
+  <li><a href="#githubworkflowsci.yaml" id="toc-githubworkflowsci.yaml" class="nav-link" data-scroll-target="#githubworkflowsci.yaml"> <span class="header-section-number">8.2.3</span> .github/workflows/ci.yaml</a></li>
+  <li><a href="#gestion-des-secrets-dockerhub" id="toc-gestion-des-secrets-dockerhub" class="nav-link" data-scroll-target="#gestion-des-secrets-dockerhub"> <span class="header-section-number">8.2.4</span> Gestion des secrets DockerHub</a></li>
+  <li><a href="#test-de-création-du-docker" id="toc-test-de-création-du-docker" class="nav-link" data-scroll-target="#test-de-création-du-docker"> <span class="header-section-number">8.2.5</span> Test de création du Docker</a></li>
+  </ul></li>
+  <li><a href="#gestion-du-déploiement" id="toc-gestion-du-déploiement" class="nav-link" data-scroll-target="#gestion-du-déploiement"> <span class="header-section-number">8.3</span> Gestion du déploiement</a>
+  <ul class="collapse">
+  <li><a href="#créer-un-autre-repo-github-pour-gérer-la-configuration-du-déploiement" id="toc-créer-un-autre-repo-github-pour-gérer-la-configuration-du-déploiement" class="nav-link" data-scroll-target="#créer-un-autre-repo-github-pour-gérer-la-configuration-du-déploiement"> <span class="header-section-number">8.3.1</span> Créer un autre repo github pour gérer la configuration du déploiement</a></li>
+  <li><a href="#créer-un-service-vscode-dans-le-datalab" id="toc-créer-un-service-vscode-dans-le-datalab" class="nav-link" data-scroll-target="#créer-un-service-vscode-dans-le-datalab"> <span class="header-section-number">8.3.2</span> Créer un service VScode dans le datalab</a></li>
+  <li><a href="#ajouter-les-fichiers-de-configuration" id="toc-ajouter-les-fichiers-de-configuration" class="nav-link" data-scroll-target="#ajouter-les-fichiers-de-configuration"> <span class="header-section-number">8.3.3</span> Ajouter les fichiers de configuration</a></li>
+  <li><a href="#gérer-les-secrets" id="toc-gérer-les-secrets" class="nav-link" data-scroll-target="#gérer-les-secrets"> <span class="header-section-number">8.3.4</span> Gérer les secrets</a></li>
+  <li><a href="#lancer-le-déploiement" id="toc-lancer-le-déploiement" class="nav-link" data-scroll-target="#lancer-le-déploiement"> <span class="header-section-number">8.3.5</span> Lancer le déploiement</a></li>
+  <li><a href="#vérifier-le-déploiement" id="toc-vérifier-le-déploiement" class="nav-link" data-scroll-target="#vérifier-le-déploiement"> <span class="header-section-number">8.3.6</span> Vérifier le déploiement</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/anaelDelorme/doc_outil_suivi_collecte/edit/main/deploy.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Déploiement de l’application</span></h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
+    
+    
+  </div>
+  
+
+</header>
+
+<p>On a réussi à obtenir une première version du site de suivi de collecte. Maintenant passons à la publication sur internet de notre site. Le principe est le suivant :</p>
+<ul>
+<li>l’application shiny est transformée en R package grâce à golem, avec toutes ces dépendances;<br>
+</li>
+<li>elle est mise dans un conteneur qu’on appelle Docker;<br>
+</li>
+<li>le docker est déposé dans un site de stockage des dockers : dockerHub;<br>
+</li>
+<li>le docker est déployé sur le datalab (grâce à Kubernetes)</li>
+</ul>
+<section id="vérification-du-packaging-du-r-package" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="vérification-du-packaging-du-r-package"><span class="header-section-number">8.1</span> Vérification du packaging du R package</h2>
+<p>Pour créer le Docker il faut s’assure que le R package puisse bien se créer. Pour cela, on lancera un <strong>attachment::att_amend_desc()</strong> puis on lancera la commande : <strong>devtools::check()</strong>.</p>
+<p>S’il y a une Error, il faut absolument la corriger avant de passer à la suite. S’il n’y a que des warnings et des notes, c’est moins grave, on peut passer à la suite.</p>
+</section>
+<section id="création-du-docker" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="création-du-docker"><span class="header-section-number">8.2</span> Création du Docker</h2>
+<p>Pour créer le docker il y a 2 fichiers à ajouter à la racine du suivi_collecte_XXX :</p>
+<ul>
+<li>un fichier Dockerfile (sans extension) : c’est une liste de commandes permettant de créer le Docker,<br>
+</li>
+<li>un fichier .github/workflows/ci.yaml : c’est un fichier qui permet faire l’intégration continue (ci) dans github. A chaque push dans Github, un flux de travail (Actions en github) est lancé. Dans notre cas ce ci permet de construire le Docker sur la base du fichier Docker et de l’envoyer dans DockerHub.</li>
+</ul>
+<section id="dockerfile" class="level3" data-number="8.2.1">
+<h3 data-number="8.2.1" class="anchored" data-anchor-id="dockerfile"><span class="header-section-number">8.2.1</span> Dockerfile</h3>
+<p>Voici à quoi doit ressembler le fichier Dockerfile (a priori vous n’avez rien à modifier) :</p>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Base image</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>FROM rocker<span class="op">/</span>shiny:<span class="fl">4.1.2</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Install required linux librairies</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>RUN apt<span class="op">-</span>get update <span class="op">-</span>y <span class="op">&amp;&amp;</span> <span class="op">\</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    apt<span class="op">-</span>get install <span class="op">-</span>y <span class="op">--</span>no<span class="op">-</span>install<span class="op">-</span>recommends libpq<span class="op">-</span>dev <span class="op">\</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>                                               libssl<span class="op">-</span>dev <span class="op">\</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>                                               libxml2<span class="op">-</span>dev <span class="op">\</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>                                               gdal<span class="op">-</span><span class="bu">bin</span> <span class="op">\</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>                                               libgdal<span class="op">-</span>dev <span class="op">\</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>                                               libjq<span class="op">-</span>dev <span class="op">\</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>                                               libudunits2<span class="op">-</span>dev </span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>RUN R <span class="op">-</span>e <span class="st">"install.packages('shiny', repos='https://cran.rstudio.com/')"</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>RUN R <span class="op">-</span>e <span class="st">"install.packages('golem', repos='https://cran.rstudio.com/')"</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Install R package and its dependencies</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>RUN install2.r remotes</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>COPY suiviCollecte<span class="op">/</span> .<span class="op">/</span>suiviCollecte</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>RUN Rscript <span class="op">-</span>e <span class="st">'remotes::install_deps("./suiviCollecte")'</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>RUN Rscript <span class="op">-</span>e <span class="st">'install.packages("./suiviCollecte", repos = NULL, type="source")'</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Expose port where shiny app will broadcast</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>ARG SHINY_PORT<span class="op">=</span><span class="dv">3838</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>EXPOSE $SHINY_PORT</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>RUN echo <span class="st">"local({options(shiny.port = $</span><span class="sc">{SHINY_PORT}</span><span class="st">, shiny.host = '0.0.0.0')})"</span> <span class="op">&gt;&gt;</span> <span class="op">/</span>usr<span class="op">/</span>local<span class="op">/</span>lib<span class="op">/</span>R<span class="op">/</span>etc<span class="op">/</span>Rprofile.site</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Endpoint</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>CMD [<span class="st">"Rscript"</span>, <span class="st">"-e"</span>, <span class="st">"suiviCollecte::run_app()"</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="création-dun-repository-sur-dockerhub" class="level3" data-number="8.2.2">
+<h3 data-number="8.2.2" class="anchored" data-anchor-id="création-dun-repository-sur-dockerhub"><span class="header-section-number">8.2.2</span> Création d’un repository sur DockerHub</h3>
+<p>Pour pouvoir récupérer le Docker du site de suivi, il faut créer un repository sur DockerHub : <a href="https://hub.docker.com/repository/create">Create repository</a></p>
+</section>
+<section id="githubworkflowsci.yaml" class="level3" data-number="8.2.3">
+<h3 data-number="8.2.3" class="anchored" data-anchor-id="githubworkflowsci.yaml"><span class="header-section-number">8.2.3</span> .github/workflows/ci.yaml</h3>
+<p>Voici à quoi doit ressembler le fichier ci.yaml (il faut modifier le <strong>anaeldelorme/suivicollecteexf</strong> où anaeldelorme est le nom d’utilisateur du dockerHub et suivicollecteexf le nom du repository DockerHub créé juste avant) :</p>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>name: Dockerize</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>on:</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  push:</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    tags:</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> <span class="st">"*"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    branches:</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> main</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>jobs:</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  docker:</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    runs<span class="op">-</span>on: ubuntu<span class="op">-</span>latest</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    steps:</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> uses: actions<span class="op">/</span>checkout<span class="op">@</span>v2</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> name: Docker meta</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>        <span class="bu">id</span>: docker_meta</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>        uses: docker<span class="op">/</span>metadata<span class="op">-</span>action<span class="op">@</span>v3</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span>:</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>          images: anaeldelorme<span class="op">/</span>suivicollecteXXX</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> name: Set up QEMU</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>        uses: docker<span class="op">/</span>setup<span class="op">-</span>qemu<span class="op">-</span>action<span class="op">@</span>v1</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> name: Set up Docker Buildx</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>        uses: docker<span class="op">/</span>setup<span class="op">-</span>buildx<span class="op">-</span>action<span class="op">@</span>v1</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> name: Login to DockerHub</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span>: github.event_name <span class="op">!=</span> <span class="st">'pull_request'</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>        uses: docker<span class="op">/</span>login<span class="op">-</span>action<span class="op">@</span>v1</span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span>:</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>          username: ${{ secrets.DOCKERHUB_USERNAME }}</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>          password: ${{ secrets.DOCKERHUB_TOKEN }}</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> name: Build <span class="kw">and</span> push</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        uses: docker<span class="op">/</span>build<span class="op">-</span>push<span class="op">-</span>action<span class="op">@</span>v2</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span>:</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>          context: .</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>          <span class="bu">file</span>: .<span class="op">/</span>Dockerfile</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>          push: ${{ github.event_name <span class="op">!=</span> <span class="st">'pull_request'</span> }}</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>          tags: <span class="op">|</span></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>            ${{ steps.docker_meta.outputs.tags }}</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>            ${{ github.ref <span class="op">==</span> <span class="st">'refs/heads/main'</span> <span class="op">&amp;&amp;</span> <span class="st">'anaeldelorme/suivicollecteXXX:latest'</span> }}</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>          labels: ${{ steps.docker_meta.outputs.labels }}</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>      <span class="op">-</span> name: Image digest</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>        run: echo ${{ steps.docker_build.outputs.digest }}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="gestion-des-secrets-dockerhub" class="level3" data-number="8.2.4">
+<h3 data-number="8.2.4" class="anchored" data-anchor-id="gestion-des-secrets-dockerhub"><span class="header-section-number">8.2.4</span> Gestion des secrets DockerHub</h3>
+<p>Comme vous pouvez le voir dans le code, le dépôt sur le DockerHub est possible parce qu’on passe les variables secrets.DOCKERHUB_USERNAME et secrets.DOCKERHUB_TOKEN. Il convient donc de générer un token dockerhub : <a href="https://docs.docker.com/security/for-developers/access-tokens/#create-an-access-token">Procédure pour créer un token dockerHub</a>.</p>
+<p>Ensuite il faut mettre le username c’est à dire votre adresse mail (DOCKERHUB_USERNAME) et le token (DOCKERHUB_TOKEN) comme secret du répertoire Github. Tout est expliqué ici : <a href="https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions#creating-secrets-for-a-repository">Creating secrets for a repository</a></p>
+</section>
+<section id="test-de-création-du-docker" class="level3" data-number="8.2.5">
+<h3 data-number="8.2.5" class="anchored" data-anchor-id="test-de-création-du-docker"><span class="header-section-number">8.2.5</span> Test de création du Docker</h3>
+<p>Nous pouvons maintenant tenter de créer notre premier Docker. Pour cela il suffit de pusher du code dans Github. Vous pouvez par exemple modifier le fichier DESCRIPTION, le commiter et le pusher.</p>
+<p>Allons voir sur Github, dans le menu Actions.</p>
+<p>Si le workflow ne s’est pas lancé, vérifiez qu’il y a bien un ci.yaml dans .github/workflows. Si le worflow est en “failure”, comme dans l’image ci-dessous, entrez dans le workflow pour identifier et corriger l’erreur :</p>
+<p><img src="images/github_actions_error.png" class="img-fluid"></p>
+<p>Si le workflow a bien fonctionné, vous aurez cela :</p>
+<p><img src="images/github_actions_ok.png" class="img-fluid"></p>
+<p>Vous pouvez maintenant vérifier dans DockerHub que le Docker a bien été déposé :</p>
+<p><img src="images/dockerhub_ok.png" class="img-fluid"></p>
+</section>
+</section>
+<section id="gestion-du-déploiement" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="gestion-du-déploiement"><span class="header-section-number">8.3</span> Gestion du déploiement</h2>
+<p>Notre Docker est sur DockerHub. Il ne reste plus qu’à l’installer sur le datalab en passant par Chart Helm.</p>
+<section id="créer-un-autre-repo-github-pour-gérer-la-configuration-du-déploiement" class="level3" data-number="8.3.1">
+<h3 data-number="8.3.1" class="anchored" data-anchor-id="créer-un-autre-repo-github-pour-gérer-la-configuration-du-déploiement"><span class="header-section-number">8.3.1</span> Créer un autre repo github pour gérer la configuration du déploiement</h3>
+<p>Dans Github, créer un répertoire pour stocker les programmes permettant le déploiement du site. Par exemple un répo : <strong>deploiemenetcollecteesea</strong>. Copier le lien vers le repo</p>
+</section>
+<section id="créer-un-service-vscode-dans-le-datalab" class="level3" data-number="8.3.2">
+<h3 data-number="8.3.2" class="anchored" data-anchor-id="créer-un-service-vscode-dans-le-datalab"><span class="header-section-number">8.3.2</span> Créer un service VScode dans le datalab</h3>
+<p>Dans le datalab, créez un nouveau service VSCode avec les droits d’admin pour Kubernetes :</p>
+<p><img src="images/vscode_python.png" class="img-fluid"></p>
+<p><img src="images/Vscode_kubernetes_admin.png" class="img-fluid"></p>
+<p><img src="images/vscode_deplo_git.png" class="img-fluid"></p>
+</section>
+<section id="ajouter-les-fichiers-de-configuration" class="level3" data-number="8.3.3">
+<h3 data-number="8.3.3" class="anchored" data-anchor-id="ajouter-les-fichiers-de-configuration"><span class="header-section-number">8.3.3</span> Ajouter les fichiers de configuration</h3>
+<p>Il faut ajouter 2 fichiers qui seront remontées à Github :</p>
+<ul>
+<li>Chart.yaml</li>
+</ul>
+<p>Il faut modifier le nom du chart.</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>apiVersion: v2</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>name: suivi<span class="op">-</span>collecte<span class="op">-</span>esea</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>version: <span class="fl">1.0.0</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>dependencies:</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">-</span> name: shiny</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    version: <span class="fl">1.0.0</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    repository: https:<span class="op">//</span>inseefrlab.github.io<span class="op">/</span>helm<span class="op">-</span>charts</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>values.yaml</li>
+</ul>
+<p>Là il faut modifier le chemin et le nom du Docker sur DockerHub. Dans ingress, on a l’url de notre site de suivi qui sera forcément de la forme *.lab.sspcloud.fr.</p>
+<p>Notez également l’existence de s3 et de existingSecret: suivicollecteesea-s3. Nous allons le voir juste après.</p>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>shiny:</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  image:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    repository: anaeldelorme<span class="op">/</span>suivicollecteesea</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    tag: latest</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>    pullPolicy: Always</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  ingress:</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    enabled: true</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    hostname: collecteesea.lab.sspcloud.fr</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>  s3:</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    enabled: true</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    existingSecret: suivicollecteesea<span class="op">-</span>s3</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>  resources: {}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="gérer-les-secrets" class="level3" data-number="8.3.4">
+<h3 data-number="8.3.4" class="anchored" data-anchor-id="gérer-les-secrets"><span class="header-section-number">8.3.4</span> Gérer les secrets</h3>
+<p>Notre application a accès aux données sur le s3 et gère des variables en secret (identifiant / mot de passe du shinyManager). Pour gérer ces variables sensibles, nous allons inscrire ces informations dans un objet Kubernetes appelé Secret, qui va nous permettre de les passer à l’application sous la forme de variables d’environnement.</p>
+<p>Pour cela nous allons créer dans notre VSCode un troisième fichier que nous n’allons pas importer dans Github. Créons ce fichier <strong>quelconque.yaml</strong> et un fichier <strong>.gitignore</strong>. Dans le fichier .gitignore, mettre uniquement quelconque.yaml. Cela indique qu’il ignorera le fichier quelconque.yaml et ne le remontera pas sur Github</p>
+<p>Le fichier quelconque.yaml sera :</p>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>apiVersion: v1</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>kind: Secret</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>metadata:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  name: suivicollecteesea<span class="op">-</span>s3</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="bu">type</span>: Opaque</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>stringData:</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  AWS_ACCESS_KEY_ID: A CHANGER</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>  AWS_SECRET_ACCESS_KEY: A CHANGER</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>  AWS_S3_ENDPOINT: minio.lab.sspcloud.fr</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  AWS_DEFAULT_REGION: us<span class="op">-</span>east<span class="op">-</span><span class="dv">1</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>  LOGIN_SITE_1: A CHANGER</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>  MDP_SITE_1 : A CHANGER</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>  LOGIN_SITE_2: A CHANGER</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>  MDP_SITE_2 : A CHANGER</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Concernant AWS_ACCESS_KEY_ID et AWS_SECRET_ACCESS_KEY, il faut créer un ciompte de service sur la <a href="https://minio-console.lab.sspcloud.fr/login">console Minio</a>. Pour cela :</p>
+<ul>
+<li>menu “Identity” -&gt; “Service Accounts” -&gt; “Create Service Account” -&gt; “Create”<br>
+</li>
+<li>menu “Access Keys” -&gt; “Create access key”</li>
+<li>comme précédemment, copier les informations de connexion dans votre quelconque.yaml</li>
+</ul>
+<p>Pour LOGIN_SITE_1 / MDP_SITE_1, et les potentiels autres login/mdp, vous spécifiez ici les différents logins/mots de passe que nous fournirez à vos utilisateurs.</p>
+<p>Quand le fichier est terminé, nous pouvez lancer dans un terminal du Vscode (File –&gt; Terminal –&gt; New terminal) : <strong>kubectl apply -f deploiemenetcollecteesea/quelconque.yaml</strong></p>
+<p>Si tout a bien fonctionné, un message devrait confirmer la création du secret. Du style secret/nom_de_secret created où nom_de_secret est ce que vous avez renseigné dans metadata.name du fichier quelconque.yaml.</p>
+</section>
+<section id="lancer-le-déploiement" class="level3" data-number="8.3.5">
+<h3 data-number="8.3.5" class="anchored" data-anchor-id="lancer-le-déploiement"><span class="header-section-number">8.3.5</span> Lancer le déploiement</h3>
+<p>Dans le terminal, lancer : <strong>helm dependency update deploiemenetcollecteesea</strong>. Puis <strong>helm install deploiemenetcollecteesea –generate-name</strong>.</p>
+</section>
+<section id="vérifier-le-déploiement" class="level3" data-number="8.3.6">
+<h3 data-number="8.3.6" class="anchored" data-anchor-id="vérifier-le-déploiement"><span class="header-section-number">8.3.6</span> Vérifier le déploiement</h3>
+<p>La première chose à vérifier c’est l’existence du helm en lançant : <strong>helm ls</strong>. Il faut que le status soit à <strong>deployed</strong>.</p>
+<p><a href="https://github.com/InseeFrLab/sspcloud-tutorials/blob/main/deployment/shiny-app.md">Plus d’infos sur la procédure de déploiement</a></p>
+
+
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -265,13 +575,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./docker.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">docker.html</span></span>
+      <a href="./add_shinymanager.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sécurisation de l’application</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./debug.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Débugage de l’application</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./modify.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modifier une application existante</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -11,3 +11,5 @@ In file(con, "w") :
   
 Cela peut arriver après une longue attente dans le service Vscode (par exemple une nuit). Pour corriger, il faut commiter et pusher le code dans github. Puis vous supprimez le service VSCode et vous recréez un service VSCode en configurant le répertoire github. Pensez à lancer l'installation les packages utiles.
 Il peut être utile de lancer dans le terminal la commande setwd("/home/onyxia/work/suivi_collecte_XXXXX/suiviCollecte/") pour indiquer où trouver le projet Golem.
+
+

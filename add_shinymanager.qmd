@@ -1,0 +1,105 @@
+# Sécurisation de l'application
+
+Nous ajoutons une couche de sécurité au site de suivi de collecte grâce au package **shinyManager**. Les utilisateurs s'authentifieront via un identifiant et à un mot de passe que vous définirez par ailleurs.
+
+## Test avec un identifiant / mot de passe en dur
+
+Il faut modifier le fichier R/app_server.R :
+
+```{r}
+#| label: secure_app_server
+#| eval: false
+#' @import shiny
+#' @import shinymanager
+#' @noRd
+
+app_server <- function(input, output, session) {
+  # Your application server logic
+  res_auth <- shinymanager::secure_server(
+    check_credentials = shinymanager::check_credentials(
+      data.frame(
+        user = c("id"), # mandatory
+        password = c("123456"), # mandatory
+        start = NA, # optinal (all others)
+        expire = NA,
+        admin = c(FALSE),
+        comment = "Simple and secure authentification mechanism
+  for single ‘Shiny’ applications.",
+        stringsAsFactors = FALSE
+      )
+    )
+  )
+
+  # liste de vos modules
+  mod_module1_server("module1_1")
+  mod_module2_server("module2_1")
+}
+
+```
+
+Puis vous modifiez le fichier R/run_app.R pour modifier l'ui :
+
+```{r}
+#| label: run_app
+#| eval: false
+run_app <- function(
+  onStart = NULL,
+  options = list(),
+  enableBookmarking = NULL,
+  uiPattern = "/",
+  ...
+) {
+  with_golem_options(
+    app = shinyApp(
+      ui = shinymanager::secure_app(app_ui, language = "fr"),
+      server = app_server,
+      onStart = onStart,
+      options = options,
+      enableBookmarking = enableBookmarking,
+      uiPattern = uiPattern
+    ),
+    golem_opts = list(...)
+  )
+}
+
+```
+
+Vous relancez l'application et vous verrez un écran d'authentification. Saisissez votre identifiant et mot de passe.
+
+## Passage avec des secrets gérés par le datalab
+
+
+
+
+Il faut modifier le fichier R/app_server.R :
+
+```{r}
+#| label: secure_app_server_with_secrets
+#| eval: false
+#' @import shiny
+#' @import shinymanager
+#' @noRd
+
+app_server <- function(input, output, session) {
+  # Your application server logic
+  res_auth <- shinymanager::secure_server(
+    check_credentials = shinymanager::check_credentials(
+      data.frame(
+        user = c(Sys.getenv("LOGIN_SITE_1"), Sys.getenv("LOGIN_SITE_2")), # mandatory
+        password = c(Sys.getenv("MDP_SITE_2"), Sys.getenv("MDP_SITE_2")), # mandatory
+        start = NA, 
+        expire = c(NA, NA),
+        admin = c(FALSE, FALSE),
+        comment = "Simple and secure authentification mechanism
+  for single ‘Shiny’ applications.",
+        stringsAsFactors = FALSE
+      )
+    )
+  )
+
+  # liste de vos modules
+  mod_module1_server("module1_1")
+  mod_module2_server("module2_1")
+}
+
+```

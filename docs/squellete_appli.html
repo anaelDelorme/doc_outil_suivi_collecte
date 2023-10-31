@@ -192,17 +192,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./add_shinymanager.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">add_shinymanager.html</span></a>
+  <a href="./add_shinymanager.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sécurisation de l’application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">docker.html</span></a>
+  <a href="./deploy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Déploiement de l’application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deploy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">deploy.html</span></a>
+  <a href="./modify.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modifier une application existante</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -297,50 +297,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">title =</span> <span class="st">"Suivi collecte EXF"</span>,</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Ajouter le bouton en haut à droite permettant d'ouvrir le site en page complète</span></span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>      <span class="at">fullscreen =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Création du header</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">header =</span> bs4Dash<span class="sc">::</span><span class="fu">dashboardHeader</span>(</span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Titre du header qui se met en haut à gauche du site</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Suivi collecte EXF"</span>,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Couleur du header --&gt; choix de couleurs dans le help de bs4Dash : ?bs4Dash::dashboardHeader</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">status =</span> <span class="st">"olive"</span>,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># logo à gauche du header qui permet d'ouvrir et fermer le menu latéral</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="co"># possibilité d'utiliser les logos de bootstrap : https://fontawesome.com/icons ou https://getbootstrap.com/docs/3.3/components/#glyphicons</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="at">sidebarIcon =</span> shiny<span class="sc">::</span><span class="fu">icon</span>(<span class="st">"tree"</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Création du menu latéral</span></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      <span class="at">sidebar =</span> <span class="fu">dashboardSidebar</span>(</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Couleur du menu latéral</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>        <span class="at">status =</span> <span class="st">"olive"</span>,</span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># id à laisser</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">id =</span> <span class="st">"sidebar"</span>,</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># ajout de la liste des liens dans le menu</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        bs4Dash<span class="sc">::</span><span class="fu">sidebarMenu</span>(</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>          <span class="at">id =</span> <span class="st">"sidebarmenu"</span>,</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>          <span class="co"># pour chaque page à afficher mettre un menuItem avec le libellé affiché</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>          <span class="co"># le tabName qui fait le lien avec l'affichage dans le body</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>          <span class="co"># le logo</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>          bs4Dash<span class="sc">::</span><span class="fu">menuItem</span>(<span class="st">"Suivi Cawi"</span>, <span class="at">tabName =</span> <span class="st">"cawi"</span>, <span class="at">icon =</span> <span class="fu">icon</span>(<span class="st">"globe"</span>)),</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>          bs4Dash<span class="sc">::</span><span class="fu">menuItem</span>(<span class="st">"Suivi Capi"</span>, <span class="at">tabName =</span> <span class="st">"capi"</span>, <span class="at">icon =</span> <span class="fu">icon</span>(<span class="st">"person"</span>))</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Ajout du body</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>      <span class="at">body =</span> <span class="fu">dashboardBody</span>(</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>        <span class="co"># liste des pages à afficher</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>        bs4Dash<span class="sc">::</span><span class="fu">tabItems</span>(</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>          <span class="co"># pour chaque page on met un tabItem avec le nom du tabName du menuItem</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>          <span class="co"># et la fonction d'affchage de la page (cette fonction est expliquée dans la suite : Ajouter des modules)</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>          bs4Dash<span class="sc">::</span><span class="fu">tabItem</span>(<span class="st">"cawi"</span>, <span class="fu">mod_Cawi_ui</span>(<span class="st">"Cawi_1"</span>)),</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>          bs4Dash<span class="sc">::</span><span class="fu">tabItem</span>(<span class="st">"capi"</span>, <span class="fu">mod_capi_ui</span>(<span class="st">"capi_1"</span>))</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>        )</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>      ),</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Ajout d'un footer avec un texte à gauche et à droite dans cet exemple.</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>      <span class="at">footer =</span> bs4Dash<span class="sc">::</span><span class="fu">dashboardFooter</span>(</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>        <span class="at">left =</span> <span class="st">"Equipe EXF"</span>,</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="at">right =</span> <span class="st">"2023-2024"</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Jout d'un waiter</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>      <span class="at">preloader =</span> <span class="fu">list</span>(<span class="at">html =</span> waiter<span class="sc">::</span><span class="fu">spin_flower</span>(), <span class="at">color =</span> <span class="st">"#6610f2"</span>),</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Création du header</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>      <span class="at">header =</span> bs4Dash<span class="sc">::</span><span class="fu">dashboardHeader</span>(</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Titre du header qui se met en haut à gauche du site</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Suivi collecte EXF"</span>,</span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Couleur du header --&gt; choix de couleurs dans le help de bs4Dash : ?bs4Dash::dashboardHeader</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>        <span class="at">status =</span> <span class="st">"olive"</span>,</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># logo à gauche du header qui permet d'ouvrir et fermer le menu latéral</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>        <span class="co"># possibilité d'utiliser les logos de bootstrap : https://fontawesome.com/icons ou https://getbootstrap.com/docs/3.3/components/#glyphicons</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>        <span class="at">sidebarIcon =</span> shiny<span class="sc">::</span><span class="fu">icon</span>(<span class="st">"tree"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Création du menu latéral</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="at">sidebar =</span> <span class="fu">dashboardSidebar</span>(</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Couleur du menu latéral</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>        <span class="at">status =</span> <span class="st">"olive"</span>,</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>        <span class="co"># id à laisser</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>        <span class="at">id =</span> <span class="st">"sidebar"</span>,</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="co"># ajout de la liste des liens dans le menu</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>        bs4Dash<span class="sc">::</span><span class="fu">sidebarMenu</span>(</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>          <span class="at">id =</span> <span class="st">"sidebarmenu"</span>,</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>          <span class="co"># pour chaque page à afficher mettre un menuItem avec le libellé affiché</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>          <span class="co"># le tabName qui fait le lien avec l'affichage dans le body</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>          <span class="co"># le logo</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>          bs4Dash<span class="sc">::</span><span class="fu">menuItem</span>(<span class="st">"Suivi Cawi"</span>, <span class="at">tabName =</span> <span class="st">"cawi"</span>, <span class="at">icon =</span> <span class="fu">icon</span>(<span class="st">"globe"</span>)),</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>          bs4Dash<span class="sc">::</span><span class="fu">menuItem</span>(<span class="st">"Suivi Capi"</span>, <span class="at">tabName =</span> <span class="st">"capi"</span>, <span class="at">icon =</span> <span class="fu">icon</span>(<span class="st">"person"</span>))</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Ajout du body</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>      <span class="at">body =</span> <span class="fu">dashboardBody</span>(</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>        <span class="co"># liste des pages à afficher</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>        bs4Dash<span class="sc">::</span><span class="fu">tabItems</span>(</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>          <span class="co"># pour chaque page on met un tabItem avec le nom du tabName du menuItem</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>          <span class="co"># et la fonction d'affchage de la page (cette fonction est expliquée dans la suite : Ajouter des modules)</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>          bs4Dash<span class="sc">::</span><span class="fu">tabItem</span>(<span class="st">"cawi"</span>, <span class="fu">mod_Cawi_ui</span>(<span class="st">"Cawi_1"</span>)),</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>          bs4Dash<span class="sc">::</span><span class="fu">tabItem</span>(<span class="st">"capi"</span>, <span class="fu">mod_capi_ui</span>(<span class="st">"capi_1"</span>))</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>      ),</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>      <span class="co"># Ajout d'un footer avec un texte à gauche et à droite dans cet exemple.</span></span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>      <span class="at">footer =</span> bs4Dash<span class="sc">::</span><span class="fu">dashboardFooter</span>(</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="at">left =</span> <span class="st">"Equipe EXF"</span>,</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="at">right =</span> <span class="st">"2023-2024"</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Dans cette page, nous avons utilisé le package <strong>bs4Dash</strong>. Il convient de l’indiquer en haut du programme comme un import. Soit on indique l’import total, soit uniquement les imports des fonctions utilisées.</p>
 <div class="cell">

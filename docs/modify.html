@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Outil de suivi de collecte MASA - 3&nbsp; Données</title>
+<title>Outil de suivi de collecte MASA - 9&nbsp; Modifier une application existante</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -88,8 +88,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./dev_app_shiny.html" rel="next">
-<link href="./prerequis.html" rel="prev">
+<link href="./debug.html" rel="next">
+<link href="./deploy.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Données</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modifier une application existante</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -172,7 +172,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./donnees.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Données</span></a>
+  <a href="./donnees.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Données</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -202,7 +202,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./modify.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modifier une application existante</span></a>
+  <a href="./modify.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modifier une application existante</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -224,17 +224,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#préparation-des-données" id="toc-préparation-des-données" class="nav-link active" data-scroll-target="#préparation-des-données"> <span class="header-section-number">3.1</span> Préparation des données</a></li>
-  <li><a href="#dépôts-des-données-sur-le-datalab" id="toc-dépôts-des-données-sur-le-datalab" class="nav-link" data-scroll-target="#dépôts-des-données-sur-le-datalab"> <span class="header-section-number">3.2</span> Dépôts des données sur le datalab</a></li>
+  <li><a href="#charger-les-nouvelles-données" id="toc-charger-les-nouvelles-données" class="nav-link active" data-scroll-target="#charger-les-nouvelles-données"> <span class="header-section-number">9.1</span> Charger les nouvelles données</a></li>
+  <li><a href="#modifier-le-site-de-suivi" id="toc-modifier-le-site-de-suivi" class="nav-link" data-scroll-target="#modifier-le-site-de-suivi"> <span class="header-section-number">9.2</span> Modifier le site de suivi</a>
+  <ul class="collapse">
+  <li><a href="#modifier-lapplication-rshiny" id="toc-modifier-lapplication-rshiny" class="nav-link" data-scroll-target="#modifier-lapplication-rshiny"> <span class="header-section-number">9.2.1</span> Modifier l’application Rshiny</a></li>
+  <li><a href="#déployer-la-nouvelle-version-de-lapplication" id="toc-déployer-la-nouvelle-version-de-lapplication" class="nav-link" data-scroll-target="#déployer-la-nouvelle-version-de-lapplication"> <span class="header-section-number">9.2.2</span> Déployer la nouvelle version de l’application</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/anaelDelorme/doc_outil_suivi_collecte/edit/main/donnees.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/anaelDelorme/doc_outil_suivi_collecte/edit/main/modify.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Données</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modifier une application existante</span></h1>
 </div>
 
 
@@ -248,86 +252,146 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<p>Les données exportées de Capibara seront déposées dans l’espace de stockage du Datalab.</p>
-<div class="callout-important callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Utilisation de données non sensibles
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>“Conformément aux <a href="https://www.sspcloud.fr/tos_fr.md">conditions d’utilisation</a>, seules des données de type open data ou ne présentant aucune sensibilité peuvent être stockées sur le Datalab. Le fait qu’un fichier ait un statut de diffusion”privé” ne suffit pas à garantir une parfaite confidentialité.”</p>
-</div>
-</div>
-<p>Les données devront donc être préparées avant d’être déposées sur le datalab.</p>
-<section id="préparation-des-données" class="level2" data-number="3.1">
-<h2 data-number="3.1" class="anchored" data-anchor-id="préparation-des-données"><span class="header-section-number">3.1</span> Préparation des données</h2>
-<p>Toutes données permettant d’identifier une entreprise ou une personne seront supprimées avant de remonter les données. Le format préconisé est le parquet. Voici un exemple de code :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>dossier <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"dossier.csv"</span>)</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>annee_courante <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"annee_courante.csv"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>entreprise <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"entreprise.csv"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>gestion <span class="ot">&lt;-</span> <span class="fu">read.csv2</span>(<span class="st">"gestion.csv"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">write_parquet</span>(<span class="at">x =</span> dossier, <span class="at">sink =</span> <span class="st">"dossier.parquet"</span>)</span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>annee_courante_light <span class="ot">&lt;-</span> annee_courante <span class="sc">%&gt;%</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Identifiant_dossier, NOM_DOSSIER, MAJC)</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">write_parquet</span>(<span class="at">x =</span> annee_courante_light, <span class="at">sink =</span> <span class="st">".parquet"</span>)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>entreprise_light <span class="ot">&lt;-</span> entreprise <span class="sc">%&gt;%</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    Identifiant_dossier,</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    NOM_DOSSIER,</span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    HEX_CODE_POSTAL_AFFI,</span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    HEX_DEPSIEGE_AFFI,</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    HEX_REGSIEGE_AFFI</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="fu">write_parquet</span>(<span class="at">x =</span> entreprise_light, <span class="at">sink =</span> <span class="st">"entreprise.parquet"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>gestion <span class="ot">&lt;-</span> gestion <span class="sc">%&gt;%</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Identifiant_dossier, </span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>         NOM_DOSSIER, </span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>         ACCEPT)</span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">write_parquet</span>(<span class="at">x =</span> gestion, <span class="at">sink =</span> <span class="st">"gestion.parquet"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<section id="charger-les-nouvelles-données" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="charger-les-nouvelles-données"><span class="header-section-number">9.1</span> Charger les nouvelles données</h2>
+<p>Prérequis :</p>
+<ul>
+<li>avoir un compte sur le Datalab<br>
+</li>
+<li>ëtre membre du projet <strong>projet-suivi-collecte-masa</strong></li>
+</ul>
+<p>C’est très simple :</p>
+<ul>
+<li>télécharger les données d’export de Capibara<br>
+</li>
+<li>lancer le script de transformation en un fichier parquet (script qui permet d’enlever les données sensibles)<br>
+</li>
+<li>aller sur le <a href="https://datalab.sspcloud.fr/">datalab</a></li>
+<li>se connecter<br>
+</li>
+<li>aller sur Mes fichiers puis choisir le projet <strong>projet-suivi-collecte-masa</strong> : <a href="https://datalab.sspcloud.fr/my-files/projet-suivi-collecte-masa">lien direct</a><br>
+</li>
+<li>choisir le répertoire de l’enquête<br>
+</li>
+<li>supprimer le(s) fichier(s) parquet<br>
+</li>
+<li>glisser/déposer le(s) nouveau(x) fichier(s) parquet</li>
+</ul>
 </section>
-<section id="dépôts-des-données-sur-le-datalab" class="level2" data-number="3.2">
-<h2 data-number="3.2" class="anchored" data-anchor-id="dépôts-des-données-sur-le-datalab"><span class="header-section-number">3.2</span> Dépôts des données sur le datalab</h2>
-<p>Quand les données sont prépararées, il faut les déposer sur le datalab. Le datalab offre une fonctionnalité de stockage des données (s3). Pour y accéder, il faut aller sur le <a href="https://datalab.sspcloud.fr/">datalab</a> :</p>
-<p><img src="images/data_accueil_datalab.png" class="img-fluid"></p>
-<p>Puis on choisit <em>Mes fichiers</em> dans le menu de gauche :</p>
-<p><img src="images/data_clic_mes_fichiers.png" class="img-fluid"></p>
-<p>Là on arrive par défaut sur son lieu de stockage individuel. Pour le site de suivi de la collecte, nous proposons d’utiliser un répertoire (un <em>bucket</em> en langage s3) partagé. Pour cela il faut choisir en haut le projet <em>projet_suivi_collecte_masa</em> :</p>
-<p><img src="images/data_choix_projet.png" class="img-fluid"></p>
-<p>Il ne reste plus qu’à créer un répertoire pour son site de collecte :</p>
-<p><img src="images\data_creation_nouveau_dossier.png" class="img-fluid"></p>
-<p>En allant dans ce répertoire, il suffit de déposer le(s) fichier(s) parquet par glisser/déposer :</p>
-<p><img src="images\data_upload_data.png" class="img-fluid"></p>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+<section id="modifier-le-site-de-suivi" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="modifier-le-site-de-suivi"><span class="header-section-number">9.2</span> Modifier le site de suivi</h2>
+<section id="modifier-lapplication-rshiny" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="modifier-lapplication-rshiny"><span class="header-section-number">9.2.1</span> Modifier l’application Rshiny</h3>
+<p>Prérequis :</p>
+<ul>
+<li>avoir un compte sur le Datalab<br>
+</li>
+<li>avoir un compte Github<br>
+</li>
+<li>être collaborateur sur le repo Github du projet</li>
+</ul>
+<p>Voici les étapes à suivre :</p>
+<ul>
+<li>aller <a href="https://github.com/">github</a><br>
+</li>
+<li>se connecter<br>
+</li>
+<li>aller sur le repo du site de suivi : suivi-collecte-XXX<br>
+</li>
+<li>copier le lien pour cloner le repo :<br>
+<img src="images\github_clone.png" class="img-fluid"><br>
+</li>
+<li>aller sur le <a href="https://datalab.sspcloud.fr/">datalab</a><br>
+</li>
+<li>se connecter<br>
+</li>
+<li>créer un service VSCode-r-python-julia et indiquer le lien de clone du repo Github<br>
+<img src="images/datalab_vscode_service.png" class="img-fluid"><br>
+<img src="images/conf_git_vscode.png" class="img-fluid"><br>
+</li>
+<li>se connecter au service VSCode<br>
+</li>
+<li>ouvrir un nouveau terminal et coller la commande :</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="op">-</span>get update</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="op">-</span>get <span class="op">-</span>y install libudunits2<span class="op">-</span>dev</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="op">-</span>get <span class="op">-</span>y install libproj<span class="op">-</span>dev</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="op">-</span>get <span class="op">-</span>y install libgdal<span class="op">-</span>dev</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="op">-</span>get install pandoc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-caption-container flex-fill">
-Mise à jour des données
+<ul>
+<li>installer les packages utiles : taper r dans le terminal puis coller la commande suivante :</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="fu">c</span>(<span class="st">"tidyverse"</span>, <span class="st">"arrow"</span>, <span class="st">"shiny"</span>, <span class="st">"shinyWidgets"</span>, <span class="st">"bs4Dash"</span>, <span class="st">"shinymanager"</span>, <span class="st">"leaflet"</span>, <span class="st">"config"</span>, <span class="st">"DT"</span>, <span class="st">"echarts4r"</span>, <span class="st">"geojsonio"</span>, <span class="st">"glue"</span>, <span class="st">"golem"</span>, <span class="st">"htmlwidgets"</span>, <span class="st">"janitor"</span>, <span class="st">"sf"</span>, <span class="st">"testthat"</span>, <span class="st">"geojsonio"</span>, <span class="st">"dockerfiler"</span>, <span class="st">"attachment"</span>, <span class="st">"rsconnect"</span>, <span class="st">"spelling"</span>, <span class="st">"aws.s3"</span>, <span class="st">"waiter"</span>, <span class="st">"pandoc"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li>changer l’étiquette du docker pour indiquer que ce sera un nouvelle version :
+<ul>
+<li>ouvrir le fichier <strong>.github/workflows/ci.yaml</strong><br>
+</li>
+<li>ligne 38 changer la version</li>
+</ul></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Avant </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">${{ github.ref == 'refs/heads/main' &amp;&amp; 'anaeldelorme/suivicollecteesea:latest' }}</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Après </span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">${{ github.ref == 'refs/heads/main' &amp;&amp; 'anaeldelorme/suivicollecteesea:latest,anaeldelorme/suivicollecteesea:v1.0.0' }}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout-body-container callout-body">
-<p>Régulièrement (tous les jours, toutes les semaines ?), le responsable d’enquête mettra à jour les données. Pour cela il refera les mêmes étapes que précédemment : export de capibara, préparation des données, export au format parquet, téléversement dans le bucket partagé du datalab.</p>
-</div>
-</div>
+<ul>
+<li>indiquer la point de départ de l’application shiny : <strong>setwd(“suivi_collecte_XXXXX/suiviCollecte/”)</strong><br>
+</li>
+<li>modifier l’application shiny en modifiant les pages, les box…<br>
+</li>
+<li>si vous ajouter de nouveaux packages, pensez à les mettre dans un <strong>#’ <span class="citation" data-cites="import">(<a href="#ref-import" role="doc-biblioref"><strong>import?</strong></a>)</span></strong>, puis lancez <strong>attachment::att_amend_desc()</strong><br>
+</li>
+<li>tester l’application shiny en <em>local</em> en faisant un lançant le fichier <strong>dev/run_dev.R</strong><br>
+</li>
+<li>vérifier que le package de l’application peut être créé en lançant un <strong>devtools::check()</strong><br>
+</li>
+<li>s’il n’y a pas d’<strong>errrors</strong> dans le check, on peut alors committer et pusher dans Github<br>
+</li>
+<li>vérifier dans github que l’action s’est bien déroulée<br>
+</li>
+<li>vérifier que le Docker est bien accessible sur <a href="https://hub.docker.com/">Dockerhub</a></li>
+</ul>
+<p>NB : il est également possible de faire la même chose avec un Rstudio et même en dehors du datalab. L’utilisation du Datalab est une meilleure assurance que cela fonctionnera bien en déployant l’application (même plateforme technique).</p>
+</section>
+<section id="déployer-la-nouvelle-version-de-lapplication" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="déployer-la-nouvelle-version-de-lapplication"><span class="header-section-number">9.2.2</span> Déployer la nouvelle version de l’application</h3>
+<p>Voici les étapes à suivre :</p>
+<ul>
+<li>aller <a href="https://github.com/">github</a><br>
+</li>
+<li>se connecter<br>
+</li>
+<li>aller sur le repo de déploiement : deploiementcollecteXXXX</li>
+<li>copier le lien pour cloner le repo :<br>
+<img src="images\github_clone.png" class="img-fluid"><br>
+</li>
+<li>aller sur le <a href="https://datalab.sspcloud.fr/">datalab</a><br>
+</li>
+<li>se connecter<br>
+</li>
+<li>créer un service VSCode-python, indiquer le lien de clone du repo Github et <strong>mettre les droits d’admin Kubernetes</strong> <img src="images/datalab_vscode_service.png" class="img-fluid"><br>
+<img src="images/conf_git_vscode.png" class="img-fluid"><br>
+<img src="images/Vscode_kubernetes_admin.png" class="img-fluid"></li>
+<li>se connecter au service VSCode<br>
+</li>
+<li>indiquer le tag de la version du Docker nouvellement créé dans le values.yaml à la 4ème ligne : <strong>tag: v1.0.0</strong><br>
+</li>
+<li>dans le terminal saisir : <strong>helm ls</strong> pour trouver le nom du chart actuellement déployé<br>
+</li>
+<li>puis saisir : <strong>helm dependency build deploiemenetcollecteXXXX/</strong><br>
+</li>
+<li>et enfin saisir <strong>helm upgrade nom_chart_deploye deploiementcollecteXXXX/</strong></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -430,13 +494,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./prerequis.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Prérequis</span></span>
+      <a href="./deploy.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Déploiement de l’application</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./dev_app_shiny.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Développement application shiny</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./debug.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Débugage de l’application</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

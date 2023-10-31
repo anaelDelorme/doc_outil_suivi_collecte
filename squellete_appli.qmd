@@ -45,6 +45,8 @@ app_ui <- function(request) {
       title = "Suivi collecte EXF",
       # Ajouter le bouton en haut à droite permettant d'ouvrir le site en page complète
       fullscreen = TRUE,
+      # Jout d'un waiter
+      preloader = list(html = waiter::spin_flower(), color = "#6610f2"),
       # Création du header
       header = bs4Dash::dashboardHeader(
         # Titre du header qui se met en haut à gauche du site

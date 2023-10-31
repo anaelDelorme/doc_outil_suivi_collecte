@@ -1,0 +1,109 @@
+# Modifier une application existante
+
+## Charger les nouvelles données
+
+Prérequis : 
+
+- avoir un compte sur le Datalab   
+- ëtre membre du projet **projet-suivi-collecte-masa**
+
+C'est très simple :   
+
+- télécharger les données d'export de Capibara    
+- lancer le script de transformation en un fichier parquet (script qui permet d'enlever les données sensibles)   
+- aller sur le [datalab](https://datalab.sspcloud.fr/)
+- se connecter   
+- aller sur Mes fichiers puis choisir le projet **projet-suivi-collecte-masa** : [lien direct](https://datalab.sspcloud.fr/my-files/projet-suivi-collecte-masa)   
+- choisir le répertoire de l'enquête   
+- supprimer le(s) fichier(s) parquet    
+- glisser/déposer le(s) nouveau(x) fichier(s) parquet
+
+
+## Modifier le site de suivi
+
+### Modifier l'application Rshiny
+
+Prérequis :   
+
+- avoir un compte sur le Datalab   
+- avoir un compte Github    
+- être collaborateur sur le repo Github du projet   
+
+Voici les étapes à suivre :
+
+- aller [github](https://github.com/)   
+- se connecter   
+- aller sur le repo du site de suivi : suivi-collecte-XXX   
+- copier le lien pour cloner le repo :    
+![](images\github_clone.png)   
+- aller sur le [datalab](https://datalab.sspcloud.fr/)   
+- se connecter   
+- créer un service VSCode-r-python-julia et indiquer le lien de clone du repo Github    
+![](images/datalab_vscode_service.png)   
+![](images/conf_git_vscode.png)   
+- se connecter au service VSCode   
+- ouvrir un nouveau terminal et coller la commande : 
+```{python}
+#| label: install_linux_lib
+#| eval: false
+sudo apt-get update
+sudo apt-get -y install libudunits2-dev
+sudo apt-get -y install libproj-dev
+sudo apt-get -y install libgdal-dev
+sudo apt-get install pandoc
+```
+
+- installer les packages utiles : taper r dans le terminal puis coller la commande suivante :    
+```{r}
+#| label: install_packages
+#| eval: false
+
+install.packages(c("tidyverse", "arrow", "shiny", "shinyWidgets", "bs4Dash", "shinymanager", "leaflet", "config", "DT", "echarts4r", "geojsonio", "glue", "golem", "htmlwidgets", "janitor", "sf", "testthat", "geojsonio", "dockerfiler", "attachment", "rsconnect", "spelling", "aws.s3", "waiter", "pandoc"))
+
+```
+
+- changer l'étiquette du docker pour indiquer que ce sera un nouvelle version :    
+  - ouvrir le fichier **.github/workflows/ci.yaml**   
+  - ligne 38 changer la version    
+```{yaml}
+#| label: change_version package
+#| eval: false 
+
+# Avant 
+${{ github.ref == 'refs/heads/main' && 'anaeldelorme/suivicollecteesea:latest' }}
+
+# Après 
+${{ github.ref == 'refs/heads/main' && 'anaeldelorme/suivicollecteesea:latest,anaeldelorme/suivicollecteesea:v1.0.0' }}
+```
+
+- indiquer la point de départ de l'application shiny : **setwd("suivi_collecte_XXXXX/suiviCollecte/")**   
+- modifier l'application shiny en modifiant les pages, les box...   
+- si vous ajouter de nouveaux packages, pensez à les mettre dans un **#' @import**, puis lancez **attachment::att_amend_desc()**   
+- tester l'application shiny en *local* en faisant un lançant le fichier **dev/run_dev.R**    
+- vérifier que le package de l'application peut être créé en lançant un **devtools::check()**    
+- s'il n'y a pas d'**errrors** dans le check, on peut alors committer et pusher dans Github   
+- vérifier dans github que l'action s'est bien déroulée   
+- vérifier que le Docker est bien accessible sur [Dockerhub](https://hub.docker.com/)   
+
+NB : il est également possible de faire la même chose avec un Rstudio et même en dehors du datalab. L'utilisation du Datalab est une meilleure assurance que cela fonctionnera bien en déployant l'application (même plateforme technique).
+
+### Déployer la nouvelle version de l'application
+
+Voici les étapes à suivre :
+
+- aller [github](https://github.com/)   
+- se connecter   
+- aller sur le repo de déploiement : deploiementcollecteXXXX
+- copier le lien pour cloner le repo :    
+![](images\github_clone.png)   
+- aller sur le [datalab](https://datalab.sspcloud.fr/)   
+- se connecter   
+- créer un service VSCode-python, indiquer le lien de clone du repo Github et **mettre les droits d'admin Kubernetes**
+![](images/datalab_vscode_service.png)   
+![](images/conf_git_vscode.png)   
+![](images/Vscode_kubernetes_admin.png)
+- se connecter au service VSCode   
+- indiquer le tag de la version du Docker nouvellement créé dans le values.yaml à la 4ème ligne : **tag: v1.0.0**    
+- dans le terminal saisir : **helm ls** pour trouver le nom du chart actuellement déployé   
+- puis saisir : **helm dependency build deploiemenetcollecteXXXX/**   
+- et enfin saisir **helm upgrade nom_chart_deploye deploiementcollecteXXXX/**     

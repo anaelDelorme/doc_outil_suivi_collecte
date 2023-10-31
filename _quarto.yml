@@ -19,8 +19,8 @@ book:
     - squellete_appli.qmd
     - add_box.qmd
     - add_shinymanager.qmd
-    - docker.qmd
     - deploy.qmd
+    - modify.qmd
     - debug.qmd
     - references.qmd
   output-file: "outil_suivi_collecte_masa"

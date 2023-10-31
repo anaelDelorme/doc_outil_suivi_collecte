@@ -192,17 +192,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./add_shinymanager.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">add_shinymanager.html</span></a>
+  <a href="./add_shinymanager.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sécurisation de l’application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./docker.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">docker.html</span></a>
+  <a href="./deploy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Déploiement de l’application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./deploy.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">deploy.html</span></a>
+  <a href="./modify.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Modifier une application existante</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -235,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#avec-un-graphique" id="toc-avec-un-graphique" class="nav-link" data-scroll-target="#avec-un-graphique"> <span class="header-section-number">6.4.1</span> Avec un graphique</a></li>
   <li><a href="#avec-une-carte" id="toc-avec-une-carte" class="nav-link" data-scroll-target="#avec-une-carte"> <span class="header-section-number">6.4.2</span> Avec une carte</a></li>
-  <li><a href="#avec-une-liste" id="toc-avec-une-liste" class="nav-link" data-scroll-target="#avec-une-liste"> <span class="header-section-number">6.4.3</span> Avec une liste</a></li>
+  <li><a href="#avec-un-tableau" id="toc-avec-un-tableau" class="nav-link" data-scroll-target="#avec-un-tableau"> <span class="header-section-number">6.4.3</span> Avec un tableau</a></li>
   <li><a href="#ajout-de-boutons" id="toc-ajout-de-boutons" class="nav-link" data-scroll-target="#ajout-de-boutons"> <span class="header-section-number">6.4.4</span> Ajout de boutons</a></li>
   <li><a href="#utilisation-de-la-fenêtre-pliable-de-droite" id="toc-utilisation-de-la-fenêtre-pliable-de-droite" class="nav-link" data-scroll-target="#utilisation-de-la-fenêtre-pliable-de-droite"> <span class="header-section-number">6.4.5</span> Utilisation de la fenêtre pliable de droite</a></li>
   </ul></li>
@@ -470,7 +470,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="op">-</span>get update</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="op">-</span>get <span class="op">-</span>y install libudunits2<span class="op">-</span>dev</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="op">-</span>get <span class="op">-</span>y install libproj<span class="op">-</span>dev</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="op">-</span>get <span class="op">-</span>y install libgdal<span class="op">-</span>dev</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="op">-</span>get <span class="op">-</span>y install libgdal<span class="op">-</span>dev</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>sudo apt<span class="op">-</span>get install pandoc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Puis on peut ajouter les topojson à notre petit r, dans le fichier R/app_server.R :</p>
 <div class="cell">
@@ -522,14 +523,78 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a>    })</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="avec-une-liste" class="level3" data-number="6.4.3">
-<h3 data-number="6.4.3" class="anchored" data-anchor-id="avec-une-liste"><span class="header-section-number">6.4.3</span> Avec une liste</h3>
+<section id="avec-un-tableau" class="level3" data-number="6.4.3">
+<h3 data-number="6.4.3" class="anchored" data-anchor-id="avec-un-tableau"><span class="header-section-number">6.4.3</span> Avec un tableau</h3>
+<p>Il est possible d’afficher des tableaux dans les box. Nous préconisons l’utilisation du package DT (à ajouter dans les imports) : côté ui on aura un <strong>dataTableOutput</strong> et côté serveur un <strong>renderDataTable</strong>. Il est possible grâce à ce package et à des extensions indiquées dans la fonction datatable d’ajouter des scollers et des boutons (par exemple : export PDF, xlsx, csv…).</p>
+<p>Voici un exemple :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Côté UI</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fluidRow</span>(</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>          bs4Dash<span class="sc">::</span><span class="fu">box</span>(<span class="at">title =</span> <span class="st">"Liste des dossiers"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">status =</span> <span class="st">"orange"</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>                   DT<span class="sc">::</span><span class="fu">dataTableOutput</span>(<span class="fu">ns</span>(<span class="st">"table_dossiers"</span>)),</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>                   <span class="at">width =</span> <span class="dv">12</span>,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">height =</span> <span class="st">"900px"</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Côté Server</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>     output<span class="sc">$</span>table_dossiers <span class="ot">&lt;-</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>         DT<span class="sc">::</span><span class="fu">renderDataTable</span>(</span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>            dossier <span class="ot">&lt;-</span> r<span class="sc">$</span>data_suivi <span class="sc">%&gt;%</span></span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>                <span class="fu">datatable</span>(<span class="at">rownames =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">extensions =</span> <span class="fu">c</span>(<span class="st">"Scroller"</span>, <span class="st">"FixedColumns"</span>, <span class="st">"Buttons"</span>, <span class="st">"Select"</span>),</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">selection =</span> <span class="st">'none'</span>,</span>
+<span id="cb10-18"><a href="#cb10-18" aria-hidden="true" tabindex="-1"></a>                   <span class="at">filter =</span> <span class="fu">list</span>(<span class="at">position =</span> <span class="st">'top'</span>,</span>
+<span id="cb10-19"><a href="#cb10-19" aria-hidden="true" tabindex="-1"></a>                      <span class="at">clear =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-20"><a href="#cb10-20" aria-hidden="true" tabindex="-1"></a>                      <span class="at">plain =</span> <span class="cn">FALSE</span></span>
+<span id="cb10-21"><a href="#cb10-21" aria-hidden="true" tabindex="-1"></a>                   ),</span>
+<span id="cb10-22"><a href="#cb10-22" aria-hidden="true" tabindex="-1"></a>                 <span class="at">options =</span> <span class="fu">list</span>(</span>
+<span id="cb10-23"><a href="#cb10-23" aria-hidden="true" tabindex="-1"></a>                   <span class="at">dom =</span> <span class="st">"Bfrtip"</span>,</span>
+<span id="cb10-24"><a href="#cb10-24" aria-hidden="true" tabindex="-1"></a>                   <span class="co"># scroll :</span></span>
+<span id="cb10-25"><a href="#cb10-25" aria-hidden="true" tabindex="-1"></a>                   <span class="at">scrollY =</span> <span class="dv">750</span>, <span class="at">scrollX =</span> <span class="dv">400</span>, <span class="at">scroller =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-26"><a href="#cb10-26" aria-hidden="true" tabindex="-1"></a>                   <span class="co"># fixer les colonnes :</span></span>
+<span id="cb10-27"><a href="#cb10-27" aria-hidden="true" tabindex="-1"></a>                   <span class="at">fixedColumns =</span> <span class="fu">list</span>(<span class="at">leftColumns =</span> <span class="dv">1</span>),</span>
+<span id="cb10-28"><a href="#cb10-28" aria-hidden="true" tabindex="-1"></a>                   <span class="co"># selection :</span></span>
+<span id="cb10-29"><a href="#cb10-29" aria-hidden="true" tabindex="-1"></a>                   <span class="at">select =</span> <span class="fu">list</span>(<span class="at">style =</span> <span class="st">'os'</span>, <span class="at">items =</span> <span class="st">'row'</span>),</span>
+<span id="cb10-30"><a href="#cb10-30" aria-hidden="true" tabindex="-1"></a>                   <span class="at">buttons =</span> <span class="fu">c</span>(</span>
+<span id="cb10-31"><a href="#cb10-31" aria-hidden="true" tabindex="-1"></a>                     <span class="co"># enregistrements</span></span>
+<span id="cb10-32"><a href="#cb10-32" aria-hidden="true" tabindex="-1"></a>                      <span class="st">'csv'</span>, <span class="st">'excel'</span>, <span class="st">'pdf'</span>,</span>
+<span id="cb10-33"><a href="#cb10-33" aria-hidden="true" tabindex="-1"></a>                     <span class="co"># selection des elements</span></span>
+<span id="cb10-34"><a href="#cb10-34" aria-hidden="true" tabindex="-1"></a>                     <span class="st">'selectAll'</span>, <span class="st">'selectNone'</span>, <span class="st">'selectRows'</span></span>
+<span id="cb10-35"><a href="#cb10-35" aria-hidden="true" tabindex="-1"></a>                   )</span>
+<span id="cb10-36"><a href="#cb10-36" aria-hidden="true" tabindex="-1"></a>                 )</span>
+<span id="cb10-37"><a href="#cb10-37" aria-hidden="true" tabindex="-1"></a>                )</span>
+<span id="cb10-38"><a href="#cb10-38" aria-hidden="true" tabindex="-1"></a>         )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="ajout-de-boutons" class="level3" data-number="6.4.4">
 <h3 data-number="6.4.4" class="anchored" data-anchor-id="ajout-de-boutons"><span class="header-section-number">6.4.4</span> Ajout de boutons</h3>
+<p>Dans une box il est possible d’ajouter des boutons afin de changer le rendu de la carte ou du graphique. Par exemple on a une carte d’avancement de collecte par région. On pourrait mettre un bouton pour afficher la carte par département. Nous préconisons l’utilisation de <a href="https://shinyapps.dreamrs.fr/shinyWidgets/">shinyWidgets</a> qui offre des composants assez ergonomiques.</p>
+<p>Le code devra être mis dans la partie ui, et récupérer dans la partie server pour faire évoluer l’affichage. Prenons l’exemple d’un bouton région / département pour l’affichage d’une carte.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Côté UI</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>      bs4Dash<span class="sc">::</span><span class="fu">box</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">title =</span> <span class="st">"Avancement de la collecte"</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">status =</span> <span class="st">"indigo"</span>,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>          shinyWidgets<span class="sc">::</span><span class="fu">awesomeRadio</span>(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">inputId =</span> <span class="fu">ns</span>(<span class="st">"map_region_departement"</span>), <span class="do">#### Attention : ne pas oublier le ns()</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>            <span class="at">label =</span> <span class="cn">NULL</span>, </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>            <span class="at">choices =</span> <span class="fu">c</span>(<span class="st">"Région"</span>, <span class="st">"Département"</span>),</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>            <span class="at">selected =</span> <span class="st">"Région"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>            <span class="at">inline =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">status =</span> <span class="st">"success"</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>          ),</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>          <span class="fu">leafletOutput</span>(<span class="fu">ns</span>(<span class="st">"map_taux_collecte"</span>))</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Côté server</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="utilisation-de-la-fenêtre-pliable-de-droite" class="level3" data-number="6.4.5">
 <h3 data-number="6.4.5" class="anchored" data-anchor-id="utilisation-de-la-fenêtre-pliable-de-droite"><span class="header-section-number">6.4.5</span> Utilisation de la fenêtre pliable de droite</h3>
+<p><em>A compléter</em></p>
 
 
 </section>
@@ -641,7 +706,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
   <div class="nav-page nav-page-next">
       <a href="./add_shinymanager.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">add_shinymanager.html</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sécurisation de l’application</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
