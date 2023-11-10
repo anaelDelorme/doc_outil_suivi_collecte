@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Outil de suivi de collecte MASA - 7&nbsp; Sécurisation de l’application</title>
+<title>Outil de suivi de collecte MASA - 5&nbsp; Sécurisation de l’application</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -88,8 +88,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./deploy.html" rel="next">
-<link href="./add_box.html" rel="prev">
+<link href="./squellete_appli.html" rel="next">
+<link href="./dev_app_shiny.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sécurisation de l’application</span></h1>
+      <h1 class="quarto-secondary-nav-title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sécurisation de l’application</span></h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -182,17 +182,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./squellete_appli.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Squelette de l’application Shiny</span></a>
+  <a href="./add_shinymanager.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sécurisation de l’application</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./add_box.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ajout de box dans une page</span></a>
+  <a href="./squellete_appli.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Squelette de l’application Shiny</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./add_shinymanager.html" class="sidebar-item-text sidebar-link active"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sécurisation de l’application</span></a>
+  <a href="./add_box.html" class="sidebar-item-text sidebar-link"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Ajout de box dans une page</span></a>
   </div>
 </li>
         <li class="sidebar-item">
@@ -224,8 +224,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#test-avec-un-identifiant-mot-de-passe-en-dur" id="toc-test-avec-un-identifiant-mot-de-passe-en-dur" class="nav-link active" data-scroll-target="#test-avec-un-identifiant-mot-de-passe-en-dur"> <span class="header-section-number">7.1</span> Test avec un identifiant / mot de passe en dur</a></li>
-  <li><a href="#passage-avec-des-secrets-gérés-par-le-datalab" id="toc-passage-avec-des-secrets-gérés-par-le-datalab" class="nav-link" data-scroll-target="#passage-avec-des-secrets-gérés-par-le-datalab"> <span class="header-section-number">7.2</span> Passage avec des secrets gérés par le datalab</a></li>
+  <li><a href="#test-avec-un-identifiant-mot-de-passe-en-dur" id="toc-test-avec-un-identifiant-mot-de-passe-en-dur" class="nav-link active" data-scroll-target="#test-avec-un-identifiant-mot-de-passe-en-dur"> <span class="header-section-number">5.1</span> Test avec un identifiant / mot de passe en dur</a></li>
+  <li><a href="#passage-avec-des-secrets-gérés-par-le-datalab" id="toc-passage-avec-des-secrets-gérés-par-le-datalab" class="nav-link" data-scroll-target="#passage-avec-des-secrets-gérés-par-le-datalab"> <span class="header-section-number">5.2</span> Passage avec des secrets gérés par le datalab</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/anaelDelorme/doc_outil_suivi_collecte/edit/main/add_shinymanager.qmd" class="toc-action">Edit this page</a></p></div></div></nav>
     </div>
@@ -234,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Sécurisation de l’application</span></h1>
+<h1 class="title d-none d-lg-block"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Sécurisation de l’application</span></h1>
 </div>
 
 
@@ -249,8 +249,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </header>
 
 <p>Nous ajoutons une couche de sécurité au site de suivi de collecte grâce au package <strong>shinyManager</strong>. Les utilisateurs s’authentifieront via un identifiant et à un mot de passe que vous définirez par ailleurs.</p>
-<section id="test-avec-un-identifiant-mot-de-passe-en-dur" class="level2" data-number="7.1">
-<h2 data-number="7.1" class="anchored" data-anchor-id="test-avec-un-identifiant-mot-de-passe-en-dur"><span class="header-section-number">7.1</span> Test avec un identifiant / mot de passe en dur</h2>
+<section id="test-avec-un-identifiant-mot-de-passe-en-dur" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="test-avec-un-identifiant-mot-de-passe-en-dur"><span class="header-section-number">5.1</span> Test avec un identifiant / mot de passe en dur</h2>
 <p>Il faut modifier le fichier R/app_server.R :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @import shiny</span></span>
@@ -303,8 +303,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>Vous relancez l’application et vous verrez un écran d’authentification. Saisissez votre identifiant et mot de passe.</p>
 </section>
-<section id="passage-avec-des-secrets-gérés-par-le-datalab" class="level2" data-number="7.2">
-<h2 data-number="7.2" class="anchored" data-anchor-id="passage-avec-des-secrets-gérés-par-le-datalab"><span class="header-section-number">7.2</span> Passage avec des secrets gérés par le datalab</h2>
+<section id="passage-avec-des-secrets-gérés-par-le-datalab" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="passage-avec-des-secrets-gérés-par-le-datalab"><span class="header-section-number">5.2</span> Passage avec des secrets gérés par le datalab</h2>
 <p>Il faut modifier le fichier R/app_server.R :</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co">#' @import shiny</span></span>
@@ -437,13 +437,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./add_box.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Ajout de box dans une page</span></span>
+      <a href="./dev_app_shiny.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Développement application shiny</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./deploy.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Déploiement de l’application</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./squellete_appli.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Squelette de l’application Shiny</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

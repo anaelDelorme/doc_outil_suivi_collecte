@@ -16,9 +16,9 @@ book:
     - prerequis.qmd
     - donnees.qmd
     - dev_app_shiny.qmd
+    - add_shinymanager.qmd
     - squellete_appli.qmd
     - add_box.qmd
-    - add_shinymanager.qmd
     - deploy.qmd
     - modify.qmd
     - debug.qmd

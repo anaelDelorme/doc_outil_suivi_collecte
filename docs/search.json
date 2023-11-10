@@ -1,0 +1,58 @@
+[
+  {
+    "objectID": "prerequis.html",
+    "href": "prerequis.html",
+    "title": "2  Prérequis",
+    "section": "",
+    "text": "La création d’un site de suivi de collecte nécessite l’utilisation de différents services gratuits. Chacun de ces services nécessite la création d’un compte."
+  },
+  {
+    "objectID": "prerequis.html#github",
+    "href": "prerequis.html#github",
+    "title": "2  Prérequis",
+    "section": "2.1 Github",
+    "text": "2.1 Github\n(Github)[https://github.com/] est un service web de stocker des programmes informatiques et de gérer les versions de ces programmes. Les fonctionnalités de Github qui nous intéresse pour la création des sites de suivi de collecte :\n\nGestion de versions : GitHub utilise Git pour permettre le suivi des modifications apportées aux fichiers. Vous pouvez cloner, pousser et tirer des référentiels Git, ce qui facilite la collaboration sur le code source.\n\nCollaboration : GitHub permet à plusieurs contributeurs de travailler ensemble sur un même projet.\n\nActions GitHub; GitHub permet d’automatiser des flux de travail (workflows) permettant des déploiements d’application par exemple.\n\nPour créer un compte GitHub, suivez ces étapes :\n\nAccédez au site web de GitHub : Github\nSur la page d’accueil, vous verrez un formulaire d’inscription “Sign up for Github”. Saisissez votre adresse mail pro et laissez vous guider.\n\nVous recevrez un e-mail de vérification à l’adresse e-mail que vous avez fournie. Suivez les instructions de l’e-mail pour vérifier votre compte."
+  },
+  {
+    "objectID": "prerequis.html#datalab-ssp-cloud",
+    "href": "prerequis.html#datalab-ssp-cloud",
+    "title": "2  Prérequis",
+    "section": "2.2 Datalab SSP Cloud",
+    "text": "2.2 Datalab SSP Cloud\nLe Datalab SSP Cloud est une plateforme libre service mutualisée de traitement de données, destinée aux statisticiens et data scientists de l’État.\nVous pouvez vous créer un compte en allant sur la page Datalab, puis en haut à droit Connexion et Créer un compte.\nIl peut être utile de lire cette page de la documenation du datalab : Première utilisation\n\n\n\n\n\n\nDroits pour déposer les données\n\n\n\nQuand votre compte est créé, contactez François Semecurbe ou Anaël Delorme pour vous donner les droits de déposer les données."
+  },
+  {
+    "objectID": "prerequis.html#jeton-daccès-personnel-github-dans-le-datalab",
+    "href": "prerequis.html#jeton-daccès-personnel-github-dans-le-datalab",
+    "title": "2  Prérequis",
+    "section": "2.3 Jeton d’accès personnel Github dans le datalab",
+    "text": "2.3 Jeton d’accès personnel Github dans le datalab\nLes programmes sont stockés sur Github et l’outil préconisé pour les modifier est le datalab. Pour faire le lien entre les 2 outils nous préconisons la création d’un jeton d’accès personnel côté Github, jeton qui sera inséré dans le datalab.\n\n2.3.1 Création d’un jeton d’accès Github\nLa création d’un jeton d’accès Github est documentée par Github (en français !) : Création d’un personnal access token (classic)\n\n\n2.3.2 Ajout dans le datalab\nIl faut aller dans Mon compte du datalab :\n\nPuis choisir Service externe et là ajouter votre jeton Github :"
+  },
+  {
+    "objectID": "prerequis.html#dockerhub",
+    "href": "prerequis.html#dockerhub",
+    "title": "2  Prérequis",
+    "section": "2.4 DockerHub",
+    "text": "2.4 DockerHub\nPour déployer l’application, on a mettre l’application shiny dans un Docker : c’est une technologie qui permet d’emballer une application ou un logiciel, ainsi que toutes ses dépendances, dans un conteneur virtuel. Cela permet d’assurer que l’application fonctionne de manière fiable et de manière cohérente, quel que soit l’endroit où elle est exécutée, que ce soit sur votre propre ordinateur, dans un centre de données ou dans le cloud.\nLe docker avec l’application shiny et ses dépendances sera stocké dans le DockerHub : c’est une plateforme de distribution de conteneurs qui permet aux développeurs de stocker, gérer et partager des images de conteneurs Docker.\nPour créer un compte sur Docker Hub, suivez ces étapes :\n\nAccédez au site web de Docker Hub : https://hub.docker.com.\n\nCliquez sur le bouton “Sign Up” ou “Don’t have an account? Sign up” pour créer un compte.\n\nSuivez les étapes.\n\nVous recevrez un e-mail de vérification à l’adresse e-mail que vous avez fournie. Suivez les instructions de l’e-mail pour vérifier votre compte."
+  },
+  {
+    "objectID": "add_shinymanager.html",
+    "href": "add_shinymanager.html",
+    "title": "5  Sécurisation de l’application",
+    "section": "",
+    "text": "Nous ajoutons une couche de sécurité au site de suivi de collecte grâce au package shinyManager. Les utilisateurs s’authentifieront via un identifiant et à un mot de passe que vous définirez par ailleurs."
+  },
+  {
+    "objectID": "add_shinymanager.html#test-avec-un-identifiant-mot-de-passe-en-dur",
+    "href": "add_shinymanager.html#test-avec-un-identifiant-mot-de-passe-en-dur",
+    "title": "5  Sécurisation de l’application",
+    "section": "5.1 Test avec un identifiant / mot de passe en dur",
+    "text": "5.1 Test avec un identifiant / mot de passe en dur\nIl faut modifier le fichier R/app_server.R :\n\n#' @import shiny\n#' @import shinymanager\n#' @noRd\n\napp_server <- function(input, output, session) {\n  # Your application server logic\n  res_auth <- shinymanager::secure_server(\n    check_credentials = shinymanager::check_credentials(\n      data.frame(\n        user = c(\"id\"), # mandatory\n        password = c(\"123456\"), # mandatory\n        start = NA, # optinal (all others)\n        expire = NA,\n        admin = c(FALSE),\n        comment = \"Simple and secure authentification mechanism\n  for single ‘Shiny’ applications.\",\n        stringsAsFactors = FALSE\n      )\n    )\n  )\n\n  # liste de vos modules\n  mod_module1_server(\"module1_1\")\n  mod_module2_server(\"module2_1\")\n}\n\nPuis vous modifiez le fichier R/run_app.R pour modifier l’ui :\n\nrun_app <- function(\n  onStart = NULL,\n  options = list(),\n  enableBookmarking = NULL,\n  uiPattern = \"/\",\n  ...\n) {\n  with_golem_options(\n    app = shinyApp(\n      ui = shinymanager::secure_app(app_ui, language = \"fr\"),\n      server = app_server,\n      onStart = onStart,\n      options = options,\n      enableBookmarking = enableBookmarking,\n      uiPattern = uiPattern\n    ),\n    golem_opts = list(...)\n  )\n}\n\nVous relancez l’application et vous verrez un écran d’authentification. Saisissez votre identifiant et mot de passe."
+  },
+  {
+    "objectID": "add_shinymanager.html#passage-avec-des-secrets-gérés-par-le-datalab",
+    "href": "add_shinymanager.html#passage-avec-des-secrets-gérés-par-le-datalab",
+    "title": "5  Sécurisation de l’application",
+    "section": "5.2 Passage avec des secrets gérés par le datalab",
+    "text": "5.2 Passage avec des secrets gérés par le datalab\nIl faut modifier le fichier R/app_server.R :\n\n#' @import shiny\n#' @import shinymanager\n#' @noRd\n\napp_server <- function(input, output, session) {\n  # Your application server logic\n  res_auth <- shinymanager::secure_server(\n    check_credentials = shinymanager::check_credentials(\n      data.frame(\n        user = c(Sys.getenv(\"LOGIN_SITE_1\"), Sys.getenv(\"LOGIN_SITE_2\")), # mandatory\n        password = c(Sys.getenv(\"MDP_SITE_2\"), Sys.getenv(\"MDP_SITE_2\")), # mandatory\n        start = NA, \n        expire = c(NA, NA),\n        admin = c(FALSE, FALSE),\n        comment = \"Simple and secure authentification mechanism\n  for single ‘Shiny’ applications.\",\n        stringsAsFactors = FALSE\n      )\n    )\n  )\n\n  # liste de vos modules\n  mod_module1_server(\"module1_1\")\n  mod_module2_server(\"module2_1\")\n}"
+  }
+]
